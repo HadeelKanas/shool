@@ -49,8 +49,8 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon">
-                            <ion-icon name="desktop-outline"></ion-icon>
+                    <span class="icon">
+                        <ion-icon name="desktop-outline"></ion-icon>
                         </span>
                         <span class="title">Employees</span>
                     </a>
@@ -63,6 +63,22 @@
                         <span class="title">programs</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="calendar-number-outline"></ion-icon>
+                        </span>
+                        <span class="title">Calender</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Signout</span>
+                    </a>
+                </li>
             </ul>
 
         </nav>
@@ -71,12 +87,11 @@
             <!--sidebar--------------------  -->
             <aside>
                 <div class="button">
-                    <input type="radio" name="buttonGroup" value="one" id="one" checked><label
-                        for="one">Feedback</label>
-                    <input type="radio" name="buttonGroup" value="two" id="two"><label for="two">Calender</label>
+                    <input type="radio" name="buttonGroup" value="one" id="one" checked><label for="one">Suggestions</label>
+                    <input type="radio" name="buttonGroup" value="two" id="two"><label for="two">Complaints</label>
                 </div>
-
-
+    
+    
             </aside>
             <!-- toggle---------------------- -->
             <div class="toggle">
@@ -115,11 +130,11 @@
             
                 <!-- <input class="text" type="text" placeholder="Add an advertisement for all school..."> -->
                 <textarea id="t1" class="text" rows="4" placeholder="Add an advertisement for all school..."></textarea>
-                <label for="photo">
+                <label for="i1">
                     <span class="icon"><ion-icon name="camera-outline"></ion-icon></span> 
                      Add a photo
                 </label>
-                <input onchange="test1()" id="i1" class="add" type="file" id="photo" name="photo" accept="image/*">
+                <input onchange="test1()" id="i1" class="add" type="file"  name="photo" accept="image/*">
                 <div id="test-img"></div>
                 <button onclick="test()" id="b1">Post</button>
 
@@ -250,6 +265,8 @@
                     `
                 }
             })
+
+            
         }
         // axios.post("http://127.0.0.1:8000/en/api/v1/post/")
     </script>

@@ -62,7 +62,7 @@ nav ul li.hovered1 {
     background-color: var(--back);
 }
 nav ul li:nth-child(1){
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     pointer-events: none;
 }
 nav ul li a{
@@ -97,7 +97,7 @@ nav ul li a .title{
     line-height: 60px;
     text-align: start;
     white-space:nowrap;
-
+    
 } 
 nav ul li:hover a::before,
 nav ul li.hovered a::before{
@@ -130,8 +130,8 @@ nav ul li.hovered a::after{
 .main {
     display: grid;
     grid-template-columns: 1fr 400px;
-    grid-template-rows: 25px 120px 220px auto;
-    grid-template-areas: "tog side" "cards side" "post side" "cont side";
+    grid-template-rows: 25px 120px 220px ;
+    grid-template-areas: "tog " "cards" "post" "cont";
     /* grid-template-areas: "tog" "cards" "post" "cont "; */
     position: absolute;
     width: calc(100% - 250px);
@@ -144,42 +144,41 @@ nav ul li.hovered a::after{
   .main.active {
     width: calc(100% - 85px);
     left: 85px;
-  }
+}
+/* aside----------------------*/
+aside{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 50px;
+    background-color: white;
+    /* box-shadow: var(--back); */
+}
+aside .button{
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0px;
 
-  /* aside----------------------*/
-  aside{
-      grid-area: side;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 400px;
-      height: 100%;
-      min-height: 100vh;
-      border-radius: 50px;
-      background-color: white;
-      /* box-shadow: var(--back); */
-  }
-  aside .button{
-      display: flex;
-      justify-content: space-around;
-      margin: 25px 0px;
-
-  }
-     /* Clicking a label will select its corresponding hidden radio button
-       We can select that radio buttons sibling label and style it. */
+}
+   /* Clicking a label will select its corresponding hidden radio button
+     We can select that radio buttons sibling label and style it. */
 input[type='radio'][name='buttonGroup']:checked + label { background-color:var(--red); color: white; }
 input[type='radio'][name='buttonGroup'] { display:none; }
 label {
-  display:inline-block;
-  padding:3px;
-  width: 9em;
-  height: 2em;
-  border: 2px solid var(--red);
-  border-radius: 20px;
-  color: var(--red);
-  background-color:white;
-  text-align:center;
+display:inline-block;
+padding:3px;
+width: 9em;
+height: 2em;
+border: 2px solid var(--red);
+border-radius: 20px;
+color: var(--red);
+background-color:white;
+text-align:center;
 }
+
    /* toggle------------- */
 .toggle {
     grid-area: tog;
@@ -369,8 +368,8 @@ label {
   }
   .addpost .add{
     position: absolute;
-    /* display: none; */
-    /* z-index: -1;   */
+    display: none;
+    z-index: -1;  
   }
   .addpost label{
       color: gray;
