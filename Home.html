@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/Home.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+</head>
+
+<body onload="getPosts()">
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="school-outline"></ion-icon>
+                        </span>
+                        <span class="title">logo</span>
+                        <!-- <img src="/images/logo.png" width="50px" height="50px"  > -->
+                    </a>
+                </li>
+                <li class="hovered">
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./students.html">
+                        <span class="icon">
+                            <ion-icon name="pencil-outline"></ion-icon>
+                        </span>
+                        <span class="title">Students</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./teachers.html">
+                        <span class="icon">
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                        </span>
+                        <span class="title">Teachers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./employees.html">
+                    <span class="icon">
+                        <ion-icon name="desktop-outline"></ion-icon>
+                        </span>
+                        <span class="title">Employees</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./programs.html">
+                        <span class="icon">
+                            <ion-icon name="reader-outline"></ion-icon>
+                        </span>
+                        <span class="title">programs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./calender.html">
+                        <span class="icon">
+                            <ion-icon name="calendar-number-outline"></ion-icon>
+                        </span>
+                        <span class="title">Calender</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Signout</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- main------------------------------------------------------------ -->
+        <div class="main">
+            <!--sidebar--------------------  -->
+            <aside>
+                <div class="button">
+                    <input type="radio" name="buttonGroup" value="one" id="one" checked><label for="one">Suggestions</label>
+                    <input type="radio" name="buttonGroup" value="two" id="two"><label for="two">Complaints</label>
+                </div>
+    
+    
+            </aside>
+            <!-- toggle---------------------- -->
+            <div class="toggle">
+                <ion-icon name="menu-outline" role="img" class="md hydrated" aria-label="menu outline"></ion-icon>
+
+            </div>
+            <!-- cards---------------------- -->
+            <div class="cardbox">
+                <div class="card">
+                    <div class="students">
+                        <div class="numbers">220</div>
+                        <div class="names">Students</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="teachers">
+                        <div class="numbers">18</div>
+                        <div class="names">Teachers</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="employees">
+                        <div class="numbers">10</div>
+                        <div class="names">Employees</div>
+                    </div>
+                </div>
+            </div>
+            <!-- addpost-------------------- -->
+            <div class="addpost">
+            
+                <div class="user">
+                    <img src="images//user1.jpg" alt="">
+                </div>
+                <div class="name">Head Master</div>
+                <div class="date">1/1/2022</div>
+            
+                <!-- <input class="text" type="text" placeholder="Add an advertisement for all school..."> -->
+                <textarea id="t1" class="text" rows="4" placeholder="Add an advertisement for all school..."></textarea>
+                <label for="i1">
+                    <span class="icon"><ion-icon name="camera-outline"></ion-icon></span> 
+                     Add a photo
+                </label>
+                <input onchange="test1()" id="i1" class="add" type="file"  name="photo" accept="image/*">
+                <div id="test-img"></div>
+                <button onclick="test()" id="b1">Post</button>
+
+            </div>
+            <!-- post -------------------->
+        <div  id="p1"  class="post">
+            <div>
+                <div class="user">
+                    <img src="images//user1.jpg" alt="">
+                </div>
+                <div class="name">Head Master</div>
+                <div class="date">1/1/2022</div>
+
+
+                <p>Tomorrow is a holiday</p>
+            
+                <div class="picture">
+                    <img src="images//user1.jpg" alt="">
+                </div>
+
+            </div>
+        </div>
+            
+
+        </div>
+
+
+
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        // add hovered class to selected list item
+        let list = document.querySelectorAll("nav li");
+
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+
+        list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+        // Menu Toggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('nav');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function () {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        };
+        
+        function test(eve){
+            let e = document.getElementById("t1").value
+            let i = document.getElementById("i1").files[0]
+
+
+            let fdata = new FormData()
+            fdata.append("description", e)
+            fdata.append("image", i)
+
+            axios.post("http://127.0.0.1:8000/en/api/v1/post/", fdata, 
+            {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }
+            ).then(o => {
+                if (o.status == 201){
+                    document.getElementById("p1").innerHTML += `
+                    <div>
+                        <div class="user">
+                            <img src="images//user1.jpg" alt="">
+                        </div>
+                        <div class="name">test user</div>
+                        <div class="date">${o.data.date}</div>
+
+
+                        <p>${o.data.description}</p>
+                    
+                        <div class="picture">
+                            <img src="${o.data.image}" alt="">
+                        </div>
+
+                    </div>
+                    `
+                }
+            })
+            // console.log("test")
+            // console.log(e)
+            // console.log(i)
+        } 
+
+        function test1(){
+            let i = document.getElementById("i1").files[0]
+            document.getElementById("test-img").innerHTML = `
+                <img src=${i.name} alt="test" width="100" height="100" />
+            `
+        }
+
+        function getPosts() {
+            axios.get("http://127.0.0.1:8000/en/api/v1/post/", {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }).then(o => {
+                let posts = o.data.results
+                let myDiv = document.getElementById("p1")
+                for (let i = 0 ; i < posts.length ; i++) {
+                    myDiv.innerHTML += `
+                        <div>
+                            <div class="user">
+                                <img src="images//user1.jpg" alt="">
+                            </div>
+                            <div class="name">test user</div>
+                            <div class="date">${posts[i].date}</div>
+
+
+                            <p>${posts[i].description}</p>
+                        
+                            <div class="picture">
+                                <img src="${posts[i].image}" alt="">
+                            </div>
+
+                        </div>
+                    `
+                }
+            })
+            
+        }
+        // axios.post("http://127.0.0.1:8000/en/api/v1/post/")
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,425 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+:root {
+    --blue: #9fb4ff;
+    --orange: #ff6f5e;
+    --green: #89e4a3;
+    --purple:#693ab7;
+    --back: #f9f6f1;
+    --red:#f71250;
+    --grey:#707070;
+    --g1:#d6d4d4;
+    --g2:#95a9aa;
+    --boxshadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  }
+
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+   
+}
+nav{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color:var(--purple) ;
+    border-left: 18px solid var(--purple);
+    transition: 0.5s;
+    overflow: hidden;
+    /* order: 1; */
+}
+nav.active {
+    width: 85px;
+  }
+nav ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+nav ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+nav ul li:hover,
+nav ul li.hovered {
+    background-color: var(--back);
+}
+
+nav ul li.hovered1 {
+    background-color: var(--back);
+}
+nav ul li:nth-child(1){
+    margin-bottom: 50px;
+    pointer-events: none;
+}
+nav ul li a{
+position: relative;
+width: 100%;
+display: flex;
+text-decoration: none;
+color: var(--back);
+font-size: 18px;
+}
+nav ul li:hover a, 
+nav ul li.hovered a {
+    color:var(--purple) ;
+    /* background-color: white; */
+}
+nav ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height:60px ;
+    line-height: 65px;
+    text-align: center;
+}
+nav ul li a .icon ion-icon {
+    font: size 1.75em;
+}
+nav ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space:nowrap;
+    
+} 
+nav ul li:hover a::before,
+nav ul li.hovered a::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -70px;
+    width:70px ;
+    height: 70px;
+    border-radius:50% ;
+    background-color:transparent;
+    box-shadow: 54px 43px 0 15px var(--back);
+    pointer-events: none;
+}
+nav ul li:hover a::after,
+nav ul li.hovered a::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+    width:70px ;
+    height: 70px;
+    border-radius:50% ;
+    background-color:transparent;
+    box-shadow: 54px -43px 0 15px var(--back);
+    pointer-events: none;
+}
+
+/* main------------------------------------------------ */
+.main {
+   
+    position: absolute;
+    width: calc(100% - 650px);       
+    left: 250px;
+    top: 0;
+    min-height: 100vh;
+    background: var(--back);
+    transition: 0.5s;
+  }
+  .main.active {
+    width: calc(100% - 485px);
+    left: 85px;
+}
+/* tog----- */
+.toggle {
+    
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    cursor: pointer;
+  } 
+/*cont---------------------  */
+.rad-btn{
+    display: flex;
+    justify-content: space-around;
+    margin: 0px 5px 15px;
+
+}
+   /* Clicking a label will select its corresponding hidden radio button
+     We can select that radio buttons sibling label and style it. */
+     input[type='radio'][name='buttonGroup']:checked + label { background-color:var(--red); color: white; }
+     input[type='radio'][name='buttonGroup'] { display:none; }
+    .rad-btn label {
+     display:inline-block;
+     padding:3px;
+     width: 9em;
+     height: 2em;
+     border: 2px solid var(--red);
+     border-radius: 8px;
+     color: var(--red);
+     background-color:white;
+     text-align:center;
+     }
+.activity{
+    position: relative;
+    height: 100px;
+    margin: 10px 10px 15px;
+    padding: 25px;
+    background-color: var(--blue);
+    border-radius: 20px;
+    display: flex;
+}     
+.activity .date{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px 10px;
+}
+.activity .subject{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px 10px;
+}
+.activity .teacher{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 5px 10px;
+}
+.activity .result{
+    align-self: center;
+}
+  
+/* aside----------------------*/
+aside{
+    /* grid-area: side; */
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    min-height: 100vh;
+    padding-right: 5px;
+    /* border-radius: 50px; */
+    background-color: var(--back);
+    /* box-shadow: var(--back); */
+}
+ aside .profile{
+    background-color: var(--purple);
+    border-bottom-right-radius:30px ;
+    border-bottom-left-radius:30px ;
+    margin-bottom: 10px;
+    height: 20%;
+    width: 100%;
+}
+.profile .user {
+    position: relative;
+    display: inline-flex;
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    top: 10px;
+    left: 30px;
+  }
+  
+  .profile .user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .profile .name{
+    position: absolute;
+    margin-top: 10px;
+    font-size: 24px;
+    color:white;
+    top: 40px;
+    left: 178px;  
+    font-family: Georgia, 'Times New Roman', Times, serif;   
+    font-style: italic; 
+}
+
+aside .info{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 80%;
+    width: 100%;
+    padding: 15px;
+
+}
+aside .info p {
+    font-style: italic;
+    margin-bottom: 5px;
+}
+aside .info #act{
+    color: var(--green);
+}
+.info .attend{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    
+}
+ .attend div{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    box-shadow: 0px 10px 20px -8px rgba(0, 0, 0, 0.4);
+
+ }
+ .attend .one{
+    background-color: var(--green);
+ }
+.attend .two{
+    background-color:var(--blue);
+} 
+.attend .three{
+    background-color: var(--red);
+} 
+.contact{
+    position: relative;
+    box-shadow: 0px 10px 20px -8px rgba(0, 0, 0, 0.4); 
+    height: 130px;  
+    margin-top: 20px;
+}
+.contact label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: gray;
+    margin: 5px;
+}
+.contact .date{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: grey;
+    margin: 5px;
+}
+.contact .text{
+    position: relative;
+    padding-left: 5px;
+    top: 35px;
+    width: 100%;
+    height: 60px;
+    border: none;
+}
+.contact .text::placeholder{
+    color: var(--g2);
+}
+.contact button{
+    color: white;
+    background-color: var(--red);
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    width: 5em;
+    height: 1.6em;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    /* transition: all 0.3s ease 0s; */
+ }
+ .info .btn {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+ }
+ .info .btn button{
+    align-self: center;
+    padding:3px;
+    width: 7em;
+    height: 2em;
+    border: 2px solid var(--red);
+    border-radius: 15px;
+    color: var(--red);
+    background-color:white;
+    text-align:center;
+ }
+ /* marks------------------ */
+ .t{
+    color: var(--purple);
+    font-size: 20px;
+    margin-left: 10px;
+ }
+ table{
+    margin: 30px;
+    margin-left: 50px;
+    border-collapse: collapse;
+    font-size: 16px;
+    /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+    border-spacing: 0;
+    border-radius: 50px;
+    width: 90%;
+}
+.term tr {
+   color: var(--g2);
+   min-height: 50px;
+}
+.term tr:nth-child(even) {
+    background-color: #fff;
+}
+.term tr:nth-child(odd) {
+   background-color:var(--g1);
+}
+.term th {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background-color: var(--g1);
+    color: black;
+    font-size: 15px;
+ }
+ .term td,
+ .term th {
+     text-align: center;
+     padding: 8px;
+ }
+ th:first-of-type{
+     border: none;
+     border-top-left-radius: 40px;
+ }
+ th:last-of-type{
+     border: none;
+     border-top-right-radius: 40px;
+ }
+tr:last-of-type
+td:first-of-type{
+    border: none;
+    border-bottom-left-radius: 40px;;
+}
+tr:last-of-type
+td:last-of-type{
+    border: none;
+    border-bottom-right-radius: 40px;;
+}
+
+

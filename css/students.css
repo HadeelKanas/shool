@@ -5,7 +5,7 @@
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 :root {
-    --blue: #35a1df;
+    --blue: #9fb4ff;
     --orange: #ff6f5e;
     --green: #89e4a3;
     --purple:#693ab7;
@@ -130,10 +130,6 @@ nav ul li.hovered a::after{
 
 /* main------------------------------------------------ */
 .main {
-    display: grid;
-    grid-template-columns: 1fr 400px;
-    grid-template-rows:  25px 60px auto;
-    grid-template-areas:"tog side" "topbar side " "t side";
     position: absolute;
     width: calc(100% - 250px);
     left: 250px;
@@ -148,7 +144,6 @@ nav ul li.hovered a::after{
 }
 /* tog----- */
 .toggle {
-    grid-area: tog;
     position: relative;
     width: 30px;
     height: 30px;
@@ -161,13 +156,13 @@ nav ul li.hovered a::after{
   
    /* topbar------------- */
    .topbar {
-    grid-area: topbar;
     width: 100%;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 15px;
+
   }
 .search {
     position: relative;
@@ -237,20 +232,19 @@ nav ul li.hovered a::after{
 
   /* table------------- */
   table{
-    grid-area: t;
     margin: 30px;
+    margin-left: 50px;
     border-collapse: collapse;
     font-size: 16px;
     /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
     border-spacing: 0;
     border-radius: 50px;
-    /* width: 100%; */
-
+    width: 90%;
   }
 
 .t-all tr {
    color: var(--g2);
-   height: 20px;
+   min-height: 50px;
 }
 .t-all tr:nth-child(even) {
     background-color: #fff;
@@ -290,97 +284,4 @@ td:last-of-type{
     border-bottom-right-radius: 40px;;
 }
 
-
-/* aside----------------------*/
-aside{
-    /* grid-area: side; */
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 400px;
-    height: 100%;
-    min-height: 100vh;
-    padding-right: 5px;
-    /* border-radius: 50px; */
-    background-color: var(--back);
-    /* box-shadow: var(--back); */
-}
- aside .profile{
-    background-color: var(--purple);
-    border-bottom-right-radius:30px ;
-    border-bottom-left-radius:30px ;
-    margin-bottom: 10px;
-    height: 20%;
-    width: 100%;
-}
-.profile .user {
-    position: relative;
-    display: inline-flex;
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    top: 10px;
-    left: 30px;
-  }
-  
-  .profile .user img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .profile .name{
-    position: absolute;
-    margin-top: 10px;
-    font-size: 24px;
-    color:white;
-    top: 40px;
-    left: 178px;  
-    font-family: Georgia, 'Times New Roman', Times, serif;   
-    font-style: italic; 
-}
-
-aside .info{
-    background-color: white;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    height: 80%;
-    width: 100%;
-    padding: 15px;
-
-}
-aside .info p {
-    font-style: italic;
-}
-.info .attend{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 7px;
-    
-}
- .attend div{
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    color: white;
-    font-size: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    padding-top: 8px;
-    box-shadow: 0px 10px 20px -8px rgba(0, 0, 0, 0.4);
-
- }
- .attend .one{
-    background-color: var(--green);
- }
-.attend .two{
-    background-color:var(--blue);
-} 
-.attend .three{
-    background-color: var(--red);
-} 
+ 

@@ -1,0 +1,438 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+:root {
+    --blue: #9fb4ff;
+    --orange: #ff6f5e;
+    --green: #89e4a3;
+    --purple:#693ab7;
+    --back: #f9f6f1;
+    --red:#f71250;
+    --grey:#707070;
+    --g1:#d6d4d4;
+    --g2:#95a9aa;
+    --boxshadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  }
+
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+   
+}
+nav{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color:var(--purple) ;
+    border-left: 18px solid var(--purple);
+    transition: 0.5s;
+    overflow: hidden;
+    /* order: 1; */
+}
+nav.active {
+    width: 85px;
+  }
+nav ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+nav ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+nav ul li:hover,
+nav ul li.hovered {
+    background-color: var(--back);
+}
+
+nav ul li.hovered1 {
+    background-color: var(--back);
+}
+nav ul li:nth-child(1){
+    margin-bottom: 50px;
+    pointer-events: none;
+}
+nav ul li a{
+position: relative;
+width: 100%;
+display: flex;
+text-decoration: none;
+color: var(--back);
+font-size: 18px;
+}
+nav ul li:hover a, 
+nav ul li.hovered a {
+    color:var(--purple) ;
+    /* background-color: white; */
+}
+nav ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height:60px ;
+    line-height: 65px;
+    text-align: center;
+}
+nav ul li a .icon ion-icon {
+    font: size 1.75em;
+}
+nav ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space:nowrap;
+    
+} 
+nav ul li:hover a::before,
+nav ul li.hovered a::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -70px;
+    width:70px ;
+    height: 70px;
+    border-radius:50% ;
+    background-color:transparent;
+    box-shadow: 54px 43px 0 15px var(--back);
+    pointer-events: none;
+}
+nav ul li:hover a::after,
+nav ul li.hovered a::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+    width:70px ;
+    height: 70px;
+    border-radius:50% ;
+    background-color:transparent;
+    box-shadow: 54px -43px 0 15px var(--back);
+    pointer-events: none;
+}
+
+/* main------------------------------------------------ */
+.main {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    grid-template-rows: 25px 120px 220px ;
+    grid-template-areas: "tog " "cards" "post" "cont";
+    /* grid-template-areas: "tog" "cards" "post" "cont "; */
+    position: absolute;
+    width: calc(100% - 250px);
+    left: 250px;
+    top: 0;
+    min-height: 100vh;
+    background: var(--back);
+    transition: 0.5s;
+  }
+  .main.active {
+    width: calc(100% - 85px);
+    left: 85px;
+}
+/* aside----------------------*/
+aside{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 50px;
+    background-color: white;
+    /* box-shadow: var(--back); */
+}
+aside .button{
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0px;
+
+}
+   /* Clicking a label will select its corresponding hidden radio button
+     We can select that radio buttons sibling label and style it. */
+input[type='radio'][name='buttonGroup']:checked + label { background-color:var(--red); color: white; }
+input[type='radio'][name='buttonGroup'] { display:none; }
+label {
+display:inline-block;
+padding:3px;
+width: 9em;
+height: 2em;
+border: 2px solid var(--red);
+border-radius: 20px;
+color: var(--red);
+background-color:white;
+text-align:center;
+}
+
+   /* toggle------------- */
+.toggle {
+    grid-area: tog;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    cursor: pointer;
+  }   
+ /* cards---------------- */
+  .cardbox {
+    position: relative;
+    grid-area: cards;
+    padding: 5px;
+    margin: 0 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+  }
+  .cardbox .card{
+      position: relative;
+      background-color: white;
+      margin: 5px 15px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+  }
+  .cardbox .card .numbers{
+      position: relative;
+      font-weight: 500;
+      font-size: 2rem;
+      text-align: center;
+  }
+  .cardbox .card .names{
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-align: center;
+
+  }
+  .cardbox .card .students {
+      color: var(--blue);
+  }
+   .cardbox .card .teachers {
+      color: var(--orange);
+  }
+  .cardbox .card .employees {
+      color: var(--green);
+  }
+  .cardbox .card .students::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 10%;
+      height: 100%;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background-color:var(--blue);
+  }
+  .cardbox .card .teachers::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 10%;
+      height: 100%;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background-color:var(--orange);
+  }
+  .cardbox .card .employees::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 10%;
+      height: 100%;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background-color:var(--green);
+  }
+  /* post------------------ */
+  .addpost{
+      grid-area: post;
+      position: relative;
+      background-color: white;
+      padding: 20px;
+      height: 100%;
+      margin:10px 20px;
+      padding: 10px;
+      border-radius: 20px;
+  }
+
+  .post{
+      grid-area: cont;
+      position: relative;
+      background-color: white;
+      padding: 20px;
+      height: 100%;
+      margin:30px 20px 20px;
+      padding: 10px;
+      border-radius: 20px;
+  }
+ 
+  .addpost .user {
+    position: relative;
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .post .user {
+    position: relative;
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .addpost .user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .post .user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .addpost .name{
+      position: absolute;
+      top:0;
+      left:68px;
+      margin-top: 10px;
+      font-size: 1.04em;
+      color:var(--grey);      
+  }
+  .post .name{
+      position: absolute;
+      top:0;
+      left:68px;
+      margin-top: 10px;
+      font-size: 1.04em;
+      color:var(--grey);      
+  }
+  .addpost .date{
+    position: absolute;
+    left: 68px;
+    top: 30px;
+    margin-top: 3px;
+    font-size: 0.8em;
+    color: var(--grey);
+  }
+  .post .date{
+    position: absolute;
+    left: 68px;
+    top: 30px;
+    margin-top: 3px;
+    font-size: 0.8em;
+    color: var(--grey);
+  }
+  .addpost .text{
+      position: relative;
+      width: 100%;
+      min-height: 100px;
+      border-radius: 20px;
+      border: 1.5px solid var(--grey);
+      padding: 10px;
+      
+    
+  }
+  .addpost .text::placeholder{
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 12px 20px;
+  }
+  .addpost .add{
+    position: absolute;
+    display: none;
+    z-index: -1;  
+  }
+  .addpost label{
+      color: gray;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      margin: 10px;
+      display: inline-flex;
+      border: none;
+      font-size: 16px;
+    
+  }
+  .addpost label :first-child{
+      position: relative;
+      display: block;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      color: var(--purple);
+  }
+ .addpost button{
+    color: white;
+    background-color: var(--red);
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    width: 7em;
+    height: 2em;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    transition: all 0.3s ease 0s;
+ }
+ .addpost button:hover{
+    /* transition: all 0.3s ease 0s; */
+    color: #fff;
+    -webkit-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    transform: translateY(-7px);
+ }
+.post p{
+    position: relative;
+    
+}
+.post .picture {
+    position: relative;
+    display: inline-flex;
+    width: 400px;
+    height: 400px;
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .addpost .picture img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
