@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <button onclick="" id="">Add a class</button>
-                <button onclick="" id="" > <a href="./add st.html">Add a student</a></button>
+                <button onclick="" id="" > <a href="./add st.html" target="_blank">Add a student</a></button>
             </div>
 
             <!-- table-------------------------------- -->
@@ -285,9 +285,9 @@
         };
 
         function studentsOnLoad() {
-            axios.get("http://86.106.131.129/en/api/v1/student/", {
+            axios.get("http://86.106.131.129/en/api/v1/student/?classroom=1", {
             headers: {
-                Auhtorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0MDkwNTcxLCJpYXQiOjE2NTI1NTQ1NzEsImp0aSI6ImEzMWNkNTRiMTg2MDQ0ZjY4ZGYyMzdmOTcxZjYxODFkIiwidXNlcl9pZCI6MX0.6sOhIFw-DNcza77TrcrHG_QMb_Nl4GVcKck96Yppj0k"
+                Auhtorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NTE1MTU5LCJpYXQiOjE2NTc5NzkxNTksImp0aSI6IjdkNTRkYzY3NzIzNzRlM2ViYzliYTMzM2Q3NDlkNDc2IiwidXNlcl9pZCI6MX0.0rTMNhh_74Uy-biybbusFZ3Efv_Py0wh3AClD2N2woo"
             }
             })
                         .then(response => {

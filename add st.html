@@ -8,6 +8,197 @@
     <link rel="stylesheet" href="css/add st.css">
 </head>
 <body>
-    <input type=""
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="school-outline"></ion-icon>
+                        </span>
+                        <span class="title">logo</span>
+                        <!-- <img src="/images/logo.png" width="50px" height="50px"  > -->
+                    </a>
+                </li>
+                <li >
+                    <a href="./Home.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li class="hovered">
+                    <a href="./students.html">
+                        <span class="icon">
+                            <ion-icon name="pencil-outline"></ion-icon>
+                        </span>
+                        <span class="title">Students</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./teachers.html">
+                        <span class="icon">
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                        </span>
+                        <span class="title">Teachers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./employees.html">
+                    <span class="icon">
+                        <ion-icon name="desktop-outline"></ion-icon>
+                        </span>
+                        <span class="title">Employees</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./programs.html">
+                        <span class="icon">
+                            <ion-icon name="reader-outline"></ion-icon>
+                        </span>
+                        <span class="title">programs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./calender.html">
+                        <span class="icon">
+                            <ion-icon name="calendar-number-outline"></ion-icon>
+                        </span>
+                        <span class="title">Calender</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Signout</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- main------------------------------------------------------------ -->
+        <div class="main">
+          
+            <!-- toggle---------------------- -->
+            <div class="toggle">
+                <ion-icon name="menu-outline" role="img" class="md hydrated" aria-label="menu outline"></ion-icon>
+
+            </div>
+             <!-- form---------------------- -->
+             <div class="form">
+                <form action="">
+                    
+                    <div class="photo">
+                        <label for="photo">
+                            <span class="icon"><ion-icon name="camera-outline"></ion-icon></span> 
+                             Add a photo
+                        </label>
+                        <input onchange="" id="photo" class="add" type="file"  name="photo" accept="image/*">              
+                    </div>
+                    <!-- right -->
+                    <div class="right-cont">
+                        <div class="right">
+                    
+                            <div>
+                                <label for="name">First name:</label>
+                                <input id="name" type="text" placeholder="">                
+                            </div>            
+                                
+                            <div>
+                                <label for="l-name">Last name:</label>
+                                <input id="l-name" type="text" placeholder="">
+                                
+                            </div>
+                            
+                            <div>
+                                <label for="f-name">Father's name:</label>
+                                <input id="f-name" type="text" placeholder="">
+                            </div>
+                
+                            <div>
+                                <label for="m-name">Mother's name:</label>
+                                <input id="m-name" type="text" placeholder="">                
+                            </div>
+                            <div>
+                                <label for="gender">Gender:</label>
+                                <input id="gender" type="text" placeholder="">
+                            </div>
+                            
+                            <div>
+                                <label for="birthday">Birthday:</label>
+                                <input id="birthday" type="text" placeholder="">
+                            </div>
+                
+                            <div>
+                                <label for="adress">Adress:</label>
+                                <input id="adress" type="text" placeholder="">         
+                                
+                            </div>
+                        
+                            <div>
+                                <label for="phone">Phone number:</label>
+                                <input id="phone" type="text" placeholder="">
+                            </div>
+                            
+                            <div>
+                                <label for="class">Class:</label>
+                                <input id="class" type="text" placeholder="">
+                            </div>
+                
+                            <div>
+                                <label for="u-name">User name:</label>
+                                <input id="u-name" type="text" placeholder="">
+                            </div>
+                
+                            <div>
+                                <label for="pass">Password:</label>
+                                <input id="pass" type="text" placeholder="">
+                            </div>  
+                        </div>
+
+                    </div>                
+                                          
+                       
+                    <button type="submit" id="" class="btn"> Accept </button>
+                    
+               
+                </form>
+            </div>       
+   
+
+        </div>
+    </div> 
+    
+    
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        // add hovered class to selected list item
+        let list = document.querySelectorAll("nav li");
+
+        function activeLink() {
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+
+        list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+        // Menu Toggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('nav');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function () {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        };
+    </script>    
 
 </body>

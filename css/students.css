@@ -6,11 +6,12 @@
 }
 :root {
     --blue: #9fb4ff;
-    --orange: #ff6f5e;
+    --orange: #FF8A65;
     --green: #89e4a3;
     --purple:#693ab7;
     --back: #f9f6f1;
-    --red:#f71250;
+    --red:#EC407A;
+    /* --red:#F06292; */
     --grey:#707070;
     --g1:#d6d4d4;
     --g2:#95a9aa;
@@ -159,7 +160,7 @@ nav ul li.hovered a::after{
     width: 100%;
     height: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 0 15px;
 
@@ -233,13 +234,13 @@ nav ul li.hovered a::after{
   /* table------------- */
   table{
     margin: 30px;
-    margin-left: 50px;
+    margin-left: 75px;
     border-collapse: collapse;
     font-size: 16px;
     /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
     border-spacing: 0;
     border-radius: 50px;
-    width: 90%;
+    width: 85%;
   }
 
 .t-all tr {
