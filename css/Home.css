@@ -180,6 +180,33 @@ color: var(--red);
 background-color:white;
 text-align:center;
 }
+.feedback{
+    position: relative;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 80px;
+    border-bottom: 2px solid grey;
+}
+.feedback .person{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--grey);
+}
+.feedback .date{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--grey);
+    font-size: 0.8em;
+}
+.feedback .f-text{
+    position: absolute;
+    /* margin-top: 20px; */
+    color: var(--grey);
+}
+
+
 
    /* toggle------------- */
 .toggle {
@@ -210,6 +237,11 @@ text-align:center;
       border-radius: 20px;
       display: flex;
       justify-content: center;
+      box-shadow: 0px 8px 10px var(--g1);
+      transition:all 300ms;
+  }
+  .cardbox .card:hover{
+    box-shadow:none;
   }
   .cardbox .card .numbers{
       position: relative;

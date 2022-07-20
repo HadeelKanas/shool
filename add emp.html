@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students</title>
-    <link rel="stylesheet" href="css/add st.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/add emp.css">
 </head>
 <body>
     <div class="container">
@@ -30,7 +29,7 @@
                     </a>
                 </li>
                 <li class="hovered">
-                    <a href="./students.html">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="accessibility-outline"></ion-icon>
                         </span>
@@ -90,14 +89,14 @@
             </div>
              <!-- form---------------------- -->
              <div class="form">
-                <form action=""  id="add-student" >
+                <form action="">
                     
                     <div class="photo">
                         <label for="photo">
-                            <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>  
+                            <span class="icon"><ion-icon name="camera-outline"></ion-icon></span> 
+                             Add a photo
                         </label>
-                        <img id="blah" src="#" alt="Add a photo">
-                        <input onchange="readURL(this);" id="photo" class="add" type="file"  name="photo" accept="image/*">              
+                        <input onchange="" id="photo" class="add" type="file"  name="photo" accept="image/*">              
                     </div>
                     <!-- right -->
                     <div class="right-cont">
@@ -145,8 +144,13 @@
                             </div>
                             
                             <div>
-                                <label for="class">Class:</label>
-                                <input id="class" type="text" placeholder="">
+                                <label for="job">Job title:</label>
+                                <input id="job" type="text" placeholder="">
+                            </div>
+
+                            <div>
+                                <label for="certificate">The certificate:</label>
+                                <input id="certificate" type="text" placeholder="">
                             </div>
                 
                             <div>
@@ -163,7 +167,7 @@
                     </div>                
                                           
                        
-                    <button type="submit" class="btn"> Accept </button>
+                    <button  type="submit" id="btn-submit" class="btn"> Accept </button>
                     
                
                 </form>
@@ -181,7 +185,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
         // add hovered class to selected list item
-
         let list = document.querySelectorAll("nav li");
 
         function activeLink() {
@@ -202,79 +205,7 @@
             main.classList.toggle('active');
         };
 
-        const formDataToSend = new FormData()
-        document.getElementById("add-student").addEventListener("submit", function (e){
-            e.preventDefault()
-            const first_name = document.getElementById("name").value
-            const last_name = document.getElementById("l-name").value
-            const father_name = document.getElementById("f-name").value
-            const mother_name = document.getElementById("m-name").value
-            const gender = document.getElementById("gender").value
-            const classroom = document.getElementById("class").value
-            const birthday = document.getElementById("birthday").value
-            const adress = document.getElementById("adress").value
-            const phone = document.getElementById("phone").value
-            const username = document.getElementById("u-name").value
-            const password = document.getElementById("pass").value
-
-            formDataToSend.append("first_name", first_name)
-            formDataToSend.append("last_name", last_name)
-            formDataToSend.append("birthday", birthday)
-            formDataToSend.append("age", "16")
-            formDataToSend.append("classroom", classroom)
-            formDataToSend.append("username", username)
-            formDataToSend.append("password", password)
-            formDataToSend.append("father_name", father_name)
-            formDataToSend.append("mother_name", mother_name)
-            formDataToSend.append("gender", gender)
-            formDataToSend.append("phone", phone)
-
-            const data = {
-                first_name,
-                last_name,
-                father_name,
-                mother_name,
-                gender,
-                "bithday": birthday.toString(),
-                adress,
-                phone,
-                username,
-                password
-            }
-
-            console.log(data)
-
-            console.log("I WILL SEND")
-            axios.post("http://127.0.0.1:8000/en/api/v1/student/", formDataToSend, {
-                headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
-                }
-            }).then(res => {
-                alert("A new student is created")
-            }).catch(e => {
-                console.log(e)
-                let validations = ``
-                Object.entries(e.response.data).forEach(err => {
-                    validations += `
-                        The field ${err[0]} have the error: ${err[1][0]}
-                    `
-                })
-                alert(validations)
-            })
-        })
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                document.getElementById('blah').src = e.target.result
-                document.getElementById('blah').width = 200
-                document.getElementById('blah').height = 200
-                };
-                reader.readAsDataURL(input.files[0]);
-                formDataToSend.append("photo", input.files[0])
-            }
-        }
+        
     </script>    
 
 </body>

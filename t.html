@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees</title>
-    <link rel="stylesheet" href="css/employees.css">
+    <title>Students</title>
+    <link rel="stylesheet" href="css/t.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
 <body onload="">
     <div class="container"> 
-        <nav>
+         <!-- nav bar---------------------------->
+         <nav>
             <ul>
                 <li>
                     <a href="#">
@@ -30,23 +31,23 @@
                     </a>
                 </li>
                 <li >
-                    <a href="./students.html">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="accessibility-outline"></ion-icon>
                         </span>
                         <span class="title">Students</span>
                     </a>
                 </li>
-                <li>
-                    <a href="./teachers.html">
+                <li class="hovered">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="pencil-outline"></ion-icon>
                         </span>
                         <span class="title">Teachers</span>
                     </a>
                 </li>
-                <li class="hovered">
-                    <a href="#">
+                <li>
+                    <a href="./employees.html">
                         <span class="icon">
                             <ion-icon name="desktop-outline"></ion-icon>
                         </span>
@@ -80,96 +81,92 @@
             </ul>
 
         </nav>
-        <!-- side bar-------------------------------------------------------- -->
-        <aside>
-            <div class="profile">
-                <div class="user">
-                    <img src="images//user1.jpg" alt="">
-                </div>
-                <div class="name">Mr. Ahmad</div>
-    
-            </div>
-            <div class="info">
-                <p>father: Ahmad</p>
-                <p>Mother: Sama Ali</p>                    
-                <p> Birthday: 1/1/2005</p>
-                <p>Adress: Damascus-AlMazzeh</p>
-                <p>Phone number: 09********</p>
-                <p>Job title: Maths</p>
-                <p>The certificate:gnhd</p>
-                <p id="act">Active</p>
-    
-                <div class="attend">
-                    <div class="one"><p>68</p></div>
-                    <div class="two"><p>3</p></div>
-                    <div class="three"><p>0</p></div>
-                </div>
-    
-                                             
-                <div class="btn">
-                    <button onclick="" id="">Edit</button>
-                    
-                </div>
-            </div>
-        </aside> 
-         <!-- main------------------------------------------------------------ -->
-         <div class="main">
+        <!-- main------------------------------------------------------------ -->
+        <div class="main">
             <!-- tog -->
             <div class="toggle">
                 <ion-icon name="menu-outline" role="img" class="md hydrated" aria-label="menu outline"></ion-icon>
-
-            </div>
-       
-            <!-- topbar---------------------- -->
-            <div class="topbar">          
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search for an employees...">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-                </div>
-             
-                <button onclick="" id="" > <a href="./add emp.html" target="_blank">Add an employee</a></button>
-
             </div>
 
-            <!-- table-------------------------------- -->
-            <table id="employees" class="t-all">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Father</th>
-                    <th>Gender</th>
-                    <th>Jop title</th>
-                    <th>Phone number</th>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Male</td>
-                    <td>Librarian</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-
-            </table>
             
+             <!-- table -->
+             <div class="t">MAths:</div>
+             <table class="term">
+                <tr>
+                    <th></th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    
+                </tr>
+                <tr>
+                    <td>sunday</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>                          
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>
+                    <td>maths</td>                          
+                </tr>
+
+          
 
 
+
+            
+        <!-- side bar ------------------ -->
+            
+            <aside>
+                <div class="profile">
+                    <div class="user">
+                        <img src="images//user1.jpg" alt="">
+                    </div>
+                    <div class="name">Mr. Ahmad</div>
+        
+                </div>
+                <div class="info">
+                    <p> father: Ahmad</p>
+                    <p>Mother: Sama Ali</p>                    
+                    <p> Birthday: 1/1/2005</p>
+                    <p>Adress: Damascus-AlMazzeh</p>
+                    <p> Phone number: 09********</p>
+                    <p> Subject: Maths</p>
+                    <p>The certificate:gnhd</p>
+                    <p id="act">Active</p>
+        
+                    <div class="attend">
+                        <div class="one"><p>68</p></div>
+                        <div class="two"><p>3</p></div>
+                        <div class="three"><p>0</p></div>
+                    </div>
+        
+                                                 
+                    <div class="btn">
+                        <button onclick="" id="">Edit</button>
+                        
+                    </div>
+                </div>
+            </aside>   
+                   
+                   
+             
+            
         </div>
+        
 
-    </div>
+
 
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -195,10 +192,6 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         };
-
-       
-    </script>
-    
-    
-</body>
-</html>
+    </script>    
+</body> 
+</html>   

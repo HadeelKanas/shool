@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers</title>
+    <link rel="stylesheet" href="css/teacher.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+</head>
+<body onload="">
+    <div class="container"> 
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="school-outline"></ion-icon>
+                        </span>
+                        <span class="title">logo</span>
+                        <!-- <img src="/images/logo.png" width="50px" height="50px"  > -->
+                    </a>
+                </li>
+                <li>
+                    <a href="./Home.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="./students.html">
+                        <span class="icon">
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                        </span>
+                        <span class="title">Students</span>
+                    </a>
+                </li>
+                <li class="hovered">
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="pencil-outline"></ion-icon>
+                        </span>
+                        <span class="title">Teachers</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="desktop-outline"></ion-icon>
+                        </span>
+                        <span class="title">Employees</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./programs.html">
+                        <span class="icon">
+                            <ion-icon name="reader-outline"></ion-icon>
+                        </span>
+                        <span class="title">Programs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./calender.html">
+                        <span class="icon">
+                            <ion-icon name="calendar-number-outline"></ion-icon>
+                        </span>
+                        <span class="title">Calender</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Signout</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+         <!-- main------------------------------------------------------------ -->
+         <div class="main">
+            <!-- tog -->
+            <div class="toggle">
+                <ion-icon name="menu-outline" role="img" class="md hydrated" aria-label="menu outline"></ion-icon>
+
+            </div>
+       
+            <!-- topbar---------------------- -->
+            <div class="topbar">          
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search for an employees...">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+             
+                <button onclick="" id="" > <a href="./add teacher.html" target="_blank">Add a teacher</a></button>
+
+            </div>
+
+            <!-- table-------------------------------- -->
+            <table id="teachers" class="t-all">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Father</th>
+                    <th>Gender</th>
+                    <th>Subject</th>
+                    <th>Phone number</th>
+                    
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Hadeel Kanas</td>
+                    <td>Mousa</td>
+                    <td>Male</td>
+                    <td>Maths</td>
+                    <td>09********</td>
+                    
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Hadeel Kanas</td>
+                    <td>Mousa</td>
+                    <td>Female</td>
+                    <td>Maths</td>
+                    <td>09********</td>
+                    
+                </tr>
+
+            </table>
+            
+
+
+        </div>
+
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        // add hovered class to selected list item
+        let list = document.querySelectorAll("nav li");
+
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+
+        list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+        // Menu Toggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('nav');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function () {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        };
+
+       
+    </script>
+    
+    
+</body>
+</html>

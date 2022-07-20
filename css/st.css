@@ -172,7 +172,7 @@ nav ul li.hovered a::after{
      width: 9em;
      height: 2em;
      border: 2px solid var(--red);
-     border-radius: 8px;
+     border-radius: 20px;
      color: var(--red);
      background-color:white;
      text-align:center;
@@ -180,7 +180,7 @@ nav ul li.hovered a::after{
 .activity{
     position: relative;
     height: 100px;
-    margin: 10px 10px 15px;
+    margin: 25px 10px 15px;
     padding: 25px;
     background-color: var(--blue);
     border-radius: 20px;

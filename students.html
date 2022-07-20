@@ -33,7 +33,7 @@
                 <li class="hovered">
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="pencil-outline"></ion-icon>
+                            <ion-icon name="accessibility-outline"></ion-icon>
                         </span>
                         <span class="title">Students</span>
                     </a>
@@ -41,7 +41,7 @@
                 <li>
                     <a href="./teachers.html">
                         <span class="icon">
-                            <ion-icon name="accessibility-outline"></ion-icon>
+                            <ion-icon name="pencil-outline"></ion-icon>
                         </span>
                         <span class="title">Teachers</span>
                     </a>
@@ -99,158 +99,31 @@
                 </div>
                 <div class="select">
                     <div>
-                      <webrouk-custom-select search-placeholder="Search..." no-results="No results found...">
-                        <select name="" id="">
-                          <option default value="" >First class</option>
-                          <option value="class 1" >1</option>
-                          <option value="class 2" >2</option>
-                          <option value="class 3" >3</option>
-                      
+                        <select name="" id="classroms-select">
                         </select>
-                      </webrouk-custom-select>
                     </div>
                 </div>
-                <button onclick="" id="">Add a class</button>
+                <button >Add a class</button>
                 <button onclick="" id="" > <a href="./add st.html" target="_blank">Add a student</a></button>
             </div>
 
             <!-- table-------------------------------- -->
             <table id="students" class="t-all">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Father</th>
-                    <th>Gender</th>
-                    <th>Class</th>
-                    <th>Phone number</th>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Father</th>
+                        <th>Gender</th>
+                        <th>Class</th>
+                        <th>Phone number</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="students-body">
+
+                </tbody>
+                
             </table>
             
 
@@ -285,16 +158,16 @@
         };
 
         function studentsOnLoad() {
-            axios.get("http://86.106.131.129/en/api/v1/student/?classroom=1", {
+            axios.get("http://127.0.0.1:8000/en/api/v1/student/?classroom=1", {
             headers: {
-                Auhtorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NTE1MTU5LCJpYXQiOjE2NTc5NzkxNTksImp0aSI6IjdkNTRkYzY3NzIzNzRlM2ViYzliYTMzM2Q3NDlkNDc2IiwidXNlcl9pZCI6MX0.0rTMNhh_74Uy-biybbusFZ3Efv_Py0wh3AClD2N2woo"
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
             }
             })
                         .then(response => {
                             console.log(response)
-                            if (response.code == 200) {
+                            
                                 const data = response.data
-                                const table = document.getElementById("students")
+                                const table = document.getElementById("students-body")
                                 data.forEach(element => {
 
                                     table.innerHTML+=`
@@ -310,7 +183,21 @@
 
                                 })
                             }
-                        })
+                        )
+            axios.get("http://127.0.0.1:8000/en/api/v1/classroom/", {
+            headers: {
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+            }
+            }).then(res => {
+                const data = res.data.results
+                const selectItem = document.getElementById("classroms-select")
+                data.forEach(ele => {
+                    selectItem.innerHTML += `
+                    <option default value=${ele.id.toString()}>${ele.name}</option>
+                    `
+                })
+            })
+
         }
     </script>
     
