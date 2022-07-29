@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
 
-<body onload="getPosts()">
+<body onload="getPosts();functionGetFeedback()">
     <div class="container">
         <nav>
             <ul>
@@ -34,7 +34,7 @@
                 <li>
                     <a href="./students.html">
                         <span class="icon">
-                            <ion-icon name="pencil-outline"></ion-icon>
+                            <ion-icon name="accessibility-outline"></ion-icon>
                         </span>
                         <span class="title">Students</span>
                     </a>
@@ -42,7 +42,7 @@
                 <li>
                     <a href="./teachers.html">
                         <span class="icon">
-                            <ion-icon name="accessibility-outline"></ion-icon>
+                            <ion-icon name="pencil-outline"></ion-icon>
                         </span>
                         <span class="title">Teachers</span>
                     </a>
@@ -90,17 +90,7 @@
                     <input type="radio" name="buttonGroup" value="one" id="one" checked><label for="one">Suggestions</label>
                     <input type="radio" name="buttonGroup" value="two" id="two"><label for="two">Complaints</label>
                 </div>
-                <div class="feedback">
-                    <div class="date">1/1/2022</div>     
-                    <div class="person">Mr.Ahmad</div>   
-                    <p  class="f-text">plaplaplapla</p> 
-                
-                </div>
-                <div class="feedback">
-                    <div class="date">1/1/2022</div>     
-                    <div class="person">Mr.Ahmad</div>   
-                    <p  class="f-text">plaplaplapla</p> 
-                
+                <div id="feedbacks">
                 </div>
 
     
@@ -115,19 +105,19 @@
             <div class="cardbox">
                 <div class="card">
                     <div class="students">
-                        <div class="numbers">220</div>
+                        <div id="students-number"  class="numbers">220</div>
                         <div class="names">Students</div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="teachers">
-                        <div class="numbers">18</div>
+                        <div id="teacheres-number" class="numbers">18</div>
                         <div class="names">Teachers</div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="employees">
-                        <div class="numbers">10</div>
+                        <div id="employees-number" class="numbers">10</div>
                         <div class="names">Employees</div>
                     </div>
                 </div>
@@ -142,15 +132,19 @@
                 <div class="date">1/1/2022</div>
             
                 <!-- <input class="text" type="text" placeholder="Add an advertisement for all school..."> -->
-                <textarea id="t1" class="text" rows="4" placeholder="Add an advertisement for all school..."></textarea>
+                <textarea onkeyup="changePreviewText()" id="t1" class="text" rows="4" placeholder="Add an advertisement for all school..."></textarea>
                 <label for="i1">
                     <span class="icon"><ion-icon name="camera-outline"></ion-icon></span> 
                      Add a photo
+                     
                 </label>
-                <input onchange="test1()" id="i1" class="add" type="file"  name="photo" accept="image/*">
+                <input  onchange="readURL(this);" id="i1" class="add" type="file"  name="photo" accept="image/*">
                 <div id="test-img"></div>
                 <button onclick="test()" id="b1">Post</button>
-
+                <div id="preview" class="preview">
+                    <p id="preview-text">.</p>
+                    <img id="blah" src="#" alt="Add a photo">   
+                </div>
             </div>
             <!-- post -------------------->
             <div  id="p1"  class="post">
@@ -183,7 +177,12 @@
     <script>
         // add hovered class to selected list item
         let list = document.querySelectorAll("nav li");
-
+        document.getElementById("one").addEventListener("click", function (e) {
+            switchFeedBackState(1)
+        })
+        document.getElementById("two").addEventListener("click", function (e) {
+            switchFeedBackState(2)
+        })
         function activeLink() {
             list.forEach((item) =>
             item.classList.remove('hovered'));
@@ -227,7 +226,6 @@
                         <div class="name">test user</div>
                         <div class="date">${o.data.date}</div>
 
-
                         <p>${o.data.description}</p>
                     
                         <div class="picture">
@@ -236,6 +234,8 @@
 
                     </div>
                     `
+                    document.getElementById("preview").innerHTML = ``
+                    document.getElementById("t1").value = ""
                 }
             })
             // console.log("test")
@@ -251,6 +251,38 @@
         }
 
         function getPosts() {
+            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=teacher", {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }).then(res => {
+                const count = res.data.count
+                const toChange = document.getElementById("teacheres-number")
+                toChange.innerHTML = count
+            })
+
+            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=employee", {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }).then(res => {
+                const count = res.data.count
+                const toChange = document.getElementById("employees-number")
+                toChange.innerHTML = count
+            })
+
+            axios.get("http://127.0.0.1:8000/en/api/v1/student/", {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }).then(res => {
+                const count = res.data.count
+                const toChange = document.getElementById("students-number")
+                toChange.innerHTML = count
+            })
+            
+
+
             axios.get("http://127.0.0.1:8000/en/api/v1/post/", {
                 headers: {
                     Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
@@ -280,7 +312,98 @@
             })
             
         }
-        // axios.post("http://127.0.0.1:8000/en/api/v1/post/")
+
+        var feedbackData = undefined
+        function switchFeedBackState(state=1){
+            if(!feedbackData) return
+            if (state == 1){
+                const feedbacks = document.getElementById("feedbacks")
+                feedbacks.innerHTML = ``
+                axios.get("http://127.0.0.1:8000/en/api/v1/feedback/", {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    }
+                }).then(res => {
+                    feedbackData = res.data.results
+                }).then(temp => {
+                    feedbackData.forEach(ele => {
+                        if (ele.type == "suggestion"){
+                            feedbacks.innerHTML += `
+                            <div class="feedback">
+                                <div class="person">${ele.user}</div>   
+                                <p  class="f-text">${ele.text}</p> 
+                            </div>
+                            `
+                        }
+                    })
+                })
+            } else if (state == 2){
+                const feedbacks = document.getElementById("feedbacks")
+                feedbacks.innerHTML = ``
+                axios.get("http://127.0.0.1:8000/en/api/v1/feedback/", {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    }
+                }).then(res => {
+                    feedbackData = res.data.results
+                }).then(temp => {
+                    feedbackData.forEach(ele => {
+                        if (ele.type == "complaint"){
+                            feedbacks.innerHTML += `
+                            <div class="feedback">
+                                <div class="person">${ele.user}</div>   
+                                <p  class="f-text">${ele.text}</p> 
+                                <p  class="f-text">${ele.date}</p>  
+                            </div>
+                            `
+                        }
+                    })
+                })
+            }
+
+        }
+
+        function functionGetFeedback(){
+            const feedbacks = document.getElementById("feedbacks")
+            axios.get("http://127.0.0.1:8000/en/api/v1/feedback/", {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }).then(res => {
+                feedbackData = res.data.results
+            }).then(temp => {
+                feedbackData.forEach(ele => {
+                    if (ele.type == "suggestion"){
+                        feedbacks.innerHTML += `
+                        <div class="feedback">
+                            <div class="person">${ele.user}</div>   
+                            <p  class="f-text">${ele.text}</p>
+                            <p  class="f-text">${ele.date}</p>  
+                        </div>
+                        `
+                    }
+                })
+            })
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                document.getElementById('blah').src = e.target.result
+                // document.getElementById('blah').width = 200
+                // document.getElementById('blah').height = 200
+                };
+                reader.readAsDataURL(input.files[0]);
+                formDataToSend.append("photo", input.files[0])
+            }
+        }
+        // function changePreviewText(){
+        //     const textareaValue = document.getElementById("t1").value
+        //     const previewText = document.getElementById("preview-text")
+        //     previewText.innerHTML = textareaValue
+        // }
+
     </script>
 
 </body>

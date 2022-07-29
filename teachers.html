@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/teacher.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
-<body onload="">
+<body onload="teachersOnLoad()">
     <div class="container"> 
         <nav>
             <ul>
@@ -92,7 +92,7 @@
             <div class="topbar">          
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Search for an employees...">
+                        <input id="searchStudent" type="text" placeholder="Search for a teacher...">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
@@ -102,35 +102,20 @@
             </div>
 
             <!-- table-------------------------------- -->
-            <table id="teachers" class="t-all">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Father</th>
-                    <th>Gender</th>
-                    <th>Subject</th>
-                    <th>Phone number</th>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Male</td>
-                    <td>Maths</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>Maths</td>
-                    <td>09********</td>
-                    
-                </tr>
+            <table class="t-all">
+                <thead id="teachersHead">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Father</th>
+                        <th>Gender</th>
+                        <th>Subject</th>
+                        <th>Phone number</th>
+                    </tr>
+                </thead>
+                <tbody id="teachers">
 
+                </tbody>
             </table>
             
 
@@ -163,8 +148,73 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         };
+        var studentsList
+        var studentsListFIltered
+        function teachersOnLoad() {
+            
+            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=teacher", {
+            headers: {
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+            }
+            }).then(res => {
+                let counter = 1
+                const data = res.data.results
+                studentsList = data
+                const table = document.getElementById("teachers")
+                data.forEach(ele => {
+                    table.innerHTML += `
+                    <tr>
+                        <td>${counter}</td>
+                        <td>${ele.first_name} ${ele.last_name}</td>
+                        <td>${ele.father_name}</td>
+                        <td>${ele.gender}</td>
+                        <td>${ele.title}</td>
+                        <td>${ele.phone}</td>    
+                    </tr>
+                    `
+                    counter++    
+                }).catch(e => {
 
-       
+                })
+            })
+        }
+        const searchInput = document.getElementById("searchStudent")
+        searchInput.addEventListener("change", function(e){
+            let counter = 1
+            console.log(e.target.value)
+            const typedText = e.target.value
+            const studentsListFIltered = studentsList.filter(f => f.first_name.includes(typedText))
+            console.log(studentsListFIltered)
+            if(studentsListFIltered.length > 0) {
+                const tableHead = document.getElementById("teachersHead")
+                tableHead.style="visibility: visibil"
+                const table = document.getElementById("teachers")
+                table.innerHTML = ``
+                studentsListFIltered.forEach(element => {
+
+                    table.innerHTML+=`
+                    <tr>
+                        <td>${counter}</td>
+                        <td>${element.first_name} ${element.last_name}</td>
+                        <td>${element.father_name}</td>
+                        <td>${element.gender}</td>
+                        <td>${element.title}</td>
+                        <td>${element.phone}</td>
+                    </tr>
+                    `       
+                    counter++
+                })  
+            } else {
+                const table = document.getElementById("teachers")
+                const tableHead = document.getElementById("teachersHead")
+                tableHead.style="visibility: hidden"
+                         
+                table.innerHTML = `
+                    <p class="table-warning">Unable to fine a student with this name</p>
+                `
+            }
+        })
+        
     </script>
     
     

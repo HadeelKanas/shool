@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/employees.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
-<body onload="">
+<body onload="employeesOnLoad()">
     <div class="container"> 
         <nav>
             <ul>
@@ -81,7 +81,7 @@
 
         </nav>
         <!-- side bar-------------------------------------------------------- -->
-        <aside>
+        <aside class="sidebar" id="sidebar-id">
             <div class="profile">
                 <div class="user">
                     <img src="images//user1.jpg" alt="">
@@ -124,7 +124,7 @@
             <div class="topbar">          
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Search for an employees...">
+                        <input id="searchStudent" type="text" placeholder="Search for an employee...">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
@@ -134,35 +134,20 @@
             </div>
 
             <!-- table-------------------------------- -->
-            <table id="employees" class="t-all">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Father</th>
-                    <th>Gender</th>
-                    <th>Jop title</th>
-                    <th>Phone number</th>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Male</td>
-                    <td>Librarian</td>
-                    <td>09********</td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hadeel Kanas</td>
-                    <td>Mousa</td>
-                    <td>Female</td>
-                    <td>6</td>
-                    <td>09********</td>
-                    
-                </tr>
+            <table id="employees" onclick="myFun(event)" class="t-all">
+                <thead id="employeesHead">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Father</th>
+                        <th>Gender</th>
+                        <th>Jop title</th>
+                        <th>Phone number</th>
+                    </tr>
+                </thead>
+                <tbody id="employeesBody">
 
+                </tbody>
             </table>
             
 
@@ -175,6 +160,9 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
+
+        var selected = undefined
+        
         // add hovered class to selected list item
         let list = document.querySelectorAll("nav li");
 
@@ -195,7 +183,117 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         };
+        var studentsList
+        var studentsListFIltered
+        function employeesOnLoad() {
+            if (!selected){
+                document.getElementById("sidebar-id").style="visibility: hidden"
+            }
+            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=employee", {
+            headers: {
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+            }
+            }).then(res => {
+                let counter = 1
+                const data = res.data.results
+                studentsList = data
+                const table = document.getElementById("employeesBody")
+                data.forEach(ele => {
+                    table.innerHTML += `
+                    <tr>
+                        <td>${counter}</td>
+                        <td>${ele.first_name} ${ele.last_name}</td>
+                        <td>${ele.father_name}</td>
+                        <td>${ele.gender}</td>
+                        <td>${ele.job_title}</td>
+                        <td>${ele.phone}</td>    
+                    </tr>
+                    `
+                    counter++    
+                })
+            })
+        } 
 
+        const searchInput = document.getElementById("searchStudent")
+        searchInput.addEventListener("change", function(e){
+            let counter = 1
+            console.log(e.target.value)
+            const typedText = e.target.value
+            const studentsListFIltered = studentsList.filter(f => f.first_name.includes(typedText))
+            console.log(studentsListFIltered)
+            if(studentsListFIltered.length > 0) {
+                const tableHead = document.getElementById("employeesHead")
+                tableHead.style="visibility: visibil"
+                const table = document.getElementById("employeesBody")
+                table.innerHTML = ``
+                studentsListFIltered.forEach(element => {
+
+                    table.innerHTML+=`
+                    <tr>
+                        <td>${counter}</td>
+                        <td>${element.first_name} ${element.last_name}</td>
+                        <td>${element.father_name}</td>
+                        <td>${element.gender}</td>
+                        <td>${element.job_title}</td>
+                        <td>${element.phone}</td>
+                    </tr>
+                    `       
+                    counter++
+                })  
+            } else {
+                const table = document.getElementById("employeesBody")
+                const tableHead = document.getElementById("employeesHead")
+                tableHead.style="visibility: hidden"
+                         
+                table.innerHTML = `
+                    <p class="table-warning">Unable to fine an employee with this name</p>
+                `
+            }
+        })
+        function myFun(e){ 
+            const data = e.target.parentNode.innerText
+            const chosenName = data.split(/\s+/)[1]
+            let selectedEmployee
+            studentsList.forEach(ele => {
+                if (ele.first_name === chosenName){
+                    selectedEmployee = ele
+                }
+            })
+            document.getElementById("sidebar-id").style="visibility: visible"
+            document.getElementById("sidebar-id").innerHTML = `
+            <aside class="sidebar" id="sidebar-id">
+                <div class="profile">
+                    <div class="user">
+                        <img src="images//user1.jpg" alt="">
+                    </div>
+                    <div class="name">${selectedEmployee.first_name} ${selectedEmployee.last_name}</div>
+        
+                </div>
+                <div class="info">
+                    <p>father: ${selectedEmployee.father_name}</p>
+                    <p>Mother: ${selectedEmployee.mother_name}</p>                    
+                    <p> Birthday: ${selectedEmployee.birthday}</p>
+                    <p>Adress: ${selectedEmployee.adress}</p>
+                    <p>Phone number: ${selectedEmployee.phone}</p>
+                    <p>Job title: ${selectedEmployee.job_title}</p>
+                    <p>The certificate:${selectedEmployee.certificates}</p>
+                    <p id="act">Active</p>
+        
+                    <div class="attend">
+                        <div class="one"><p>68</p></div>
+                        <div class="two"><p>3</p></div>
+                        <div class="three"><p>0</p></div>
+                    </div>
+        
+                                                
+                    <div class="btn">
+                        <button onclick="" id="">Edit</button>
+                        
+                    </div>
+                </div>
+            </aside> 
+            `
+        }
        
     </script>
     

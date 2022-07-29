@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students</title>
     <link rel="stylesheet" href="css/add emp.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+    
     <div class="container">
         <nav>
             <ul>
@@ -89,14 +91,15 @@
             </div>
              <!-- form---------------------- -->
              <div class="form">
-                <form action="">
+                <form action="" id="add-employee">
                     
                     <div class="photo">
                         <label for="photo">
                             <span class="icon"><ion-icon name="camera-outline"></ion-icon></span> 
                              Add a photo
                         </label>
-                        <input onchange="" id="photo" class="add" type="file"  name="photo" accept="image/*">              
+                        <img id="blah" src="#" alt="Add a photo">
+                        <input  onchange="readURL(this);" id="photo" class="add" type="file"  name="photo" accept="image/*">              
                     </div>
                     <!-- right -->
                     <div class="right-cont">
@@ -205,7 +208,84 @@
             main.classList.toggle('active');
         };
 
-        
+        const formDataToSend = new FormData()
+        document.getElementById("add-employee").addEventListener("submit", function (e){
+            e.preventDefault()
+            const first_name = document.getElementById("name").value
+            const last_name = document.getElementById("l-name").value
+            const father_name = document.getElementById("f-name").value
+            const mother_name = document.getElementById("m-name").value
+            const gender = document.getElementById("gender").value
+            // const classroom = document.getElementById("class").value
+            const birthday = document.getElementById("birthday").value
+            const adress = document.getElementById("adress").value
+            const phone = document.getElementById("phone").value
+            const username = document.getElementById("u-name").value
+            const password = document.getElementById("pass").value
+            // const subject = document.getElementById("subject").value
+            const certificate = document.getElementById("certificate").value
+
+            formDataToSend.append("first_name", first_name)
+            formDataToSend.append("last_name", last_name)
+            formDataToSend.append("birthday", birthday)
+            formDataToSend.append("age", "16")
+            // formDataToSend.append("classroom", classroom)
+            formDataToSend.append("username", username)
+            formDataToSend.append("password", password)
+            formDataToSend.append("father_name", father_name)
+            formDataToSend.append("mother_name", mother_name)
+            formDataToSend.append("gender", gender)
+            formDataToSend.append("phone", phone)
+            // formDataToSend.append("subject", subject)
+            formDataToSend.append("certificates", certificate)
+            formDataToSend.append("account_type", "employee")
+
+            const data = {
+                first_name,
+                last_name,
+                father_name,
+                mother_name,
+                gender,
+                "bithday": birthday.toString(),
+                adress,
+                phone,
+                username,
+                password
+            }
+
+            console.log(data)
+
+            console.log("I WILL SEND")
+            axios.post("http://127.0.0.1:8000/en/api/v1/profile/", formDataToSend, {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            }).then(res => {
+                alert("A new employee is created")
+            }).catch(e => {
+                console.log(e)
+                let validations = ``
+                Object.entries(e.response.data).forEach(err => {
+                    validations += `
+                        The field ${err[0]} have the error: ${err[1][0]}
+                    `
+                })
+                alert(validations)
+            })
+        })
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                document.getElementById('blah').src = e.target.result
+                document.getElementById('blah').width = 200
+                document.getElementById('blah').height = 200
+                };
+                reader.readAsDataURL(input.files[0]);
+                formDataToSend.append("photo", input.files[0])
+            }
+        } 
     </script>    
 
 </body>

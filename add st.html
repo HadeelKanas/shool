@@ -7,6 +7,7 @@
     <title>Students</title>
     <link rel="stylesheet" href="css/add st.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -268,8 +269,8 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                 document.getElementById('blah').src = e.target.result
-                document.getElementById('blah').width = 200
-                document.getElementById('blah').height = 200
+                document.getElementById('blah').width = 150
+                document.getElementById('blah').height = 150
                 };
                 reader.readAsDataURL(input.files[0]);
                 formDataToSend.append("photo", input.files[0])

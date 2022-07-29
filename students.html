@@ -93,7 +93,7 @@
             <div class="topbar">          
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Search for a student...">
+                        <input id="searchStudent" type="text" placeholder="Search for a student...">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
@@ -103,21 +103,20 @@
                         </select>
                     </div>
                 </div>
-                <button >Add a class</button>
+                <button id="modalBtn">Add a class</button>
                 <button onclick="" id="" > <a href="./add st.html" target="_blank">Add a student</a></button>
             </div>
 
             <!-- table-------------------------------- -->
             <table id="students" class="t-all">
-                <thead>
+                <thead id="students-head">
                     <tr>
-                        <th>Id</th>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Father</th>
                         <th>Gender</th>
                         <th>Class</th>
                         <th>Phone number</th>
-                        
                     </tr>
                 </thead>
                 <tbody id="students-body">
@@ -133,12 +132,33 @@
     </div>
 
 
+
+    <!-- TO DO STYLING -->
+        <div id="simpleModal" class="modal-overlay">
+            <div class="modal-content">
+            <div class="modal-header">
+                <span class="closeBtn"> ♥</span>
+                <h2>Header</h2>
+            </div>
+            <div class="modal-body">
+                <p>Hello</p>
+                <p>Showing Dave how to make a modal</p>
+            </div>
+            <div class="modal-footer">
+                <h3>Footer</h3>
+            </div>
+            </div>
+        </div>
+    <!-- TO DO STYLING -->
+
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
         // add hovered class to selected list item
         let list = document.querySelectorAll("nav li");
-
+        var studentsList
+        var studentsListFIltered
         function activeLink() {
             list.forEach((item) =>
                 item.classList.remove('hovered'));
@@ -158,21 +178,23 @@
         };
 
         function studentsOnLoad() {
+            let counter = 1
             axios.get("http://127.0.0.1:8000/en/api/v1/student/?classroom=1", {
             headers: {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
-            }
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
             })
                         .then(response => {
                             console.log(response)
                             
-                                const data = response.data
+                                const data = response.data.results
+                                studentsList = data
                                 const table = document.getElementById("students-body")
                                 data.forEach(element => {
 
                                     table.innerHTML+=`
                                     <tr>
-                                        <td>${element.id}</td>
+                                        <td>${counter}</td>
                                         <td>${element.first_name} ${element.last_name}</td>
                                         <td>${element.father_name}</td>
                                         <td>${element.gender}</td>
@@ -180,7 +202,7 @@
                                         <td>${element.phone}</td>
                                     </tr>
                                     `       
-
+                                    counter++
                                 })
                             }
                         )
@@ -197,8 +219,112 @@
                     `
                 })
             })
-
         }
+
+        const searchInput = document.getElementById("searchStudent")
+        searchInput.addEventListener("change", function(e){
+            let counter = 1
+            console.log(e.target.value)
+            const typedText = e.target.value
+            const studentsListFIltered = studentsList.filter(f => f.first_name.includes(typedText))
+            console.log(studentsListFIltered)
+            if(studentsListFIltered.length > 0) {
+                const tableHead = document.getElementById("students-head")
+                tableHead.style="visibility: visibil"
+                const table = document.getElementById("students-body")
+                table.innerHTML = ``
+                studentsListFIltered.forEach(element => {
+
+                    table.innerHTML+=`
+                    <tr>
+                        <td>${counter}</td>
+                        <td>${element.first_name} ${element.last_name}</td>
+                        <td>${element.father_name}</td>
+                        <td>${element.gender}</td>
+                        <td>${element.classroom}</td>
+                        <td>${element.phone}</td>
+                    </tr>
+                    `       
+                    counter++
+                })  
+            } else {
+                const table = document.getElementById("students-body")
+                const tableHead = document.getElementById("students-head")
+                tableHead.style="visibility: hidden"
+                         
+                table.innerHTML = `
+                    <p class="table-warning">Unable to fine a student with this name</p>
+                `
+            }
+        })
+
+        const selectClass = document.getElementById("classroms-select")
+        selectClass.addEventListener("change", function(e){
+            let counter = 1
+            console.log(e.target.value)
+            const selectedClass = e.target.value
+            const table = document.getElementById("students-body")
+            table.innerHTML = ``
+            axios.get(`http://127.0.0.1:8000/en/api/v1/student/?classroom=${selectedClass}`, {
+            headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                }
+            })
+                        .then(response => {
+                            console.log(response)
+                            
+                                const data = response.data.results
+                                studentsList = data
+                                
+                                data.forEach(element => {
+
+                                    table.innerHTML+=`
+                                    <tr>
+                                        <td>${counter}</td>
+                                        <td>${element.first_name} ${element.last_name}</td>
+                                        <td>${element.father_name}</td>
+                                        <td>${element.gender}</td>
+                                        <td>${element.classroom}</td>
+                                        <td>${element.phone}</td>
+                                    </tr>
+                                    `       
+                                    counter++
+                                })
+                            }
+                        )
+
+        })
+
+        // Get modal element
+var modal = document.getElementById('simpleModal');
+// Get open modal button
+var modalBtn = document.getElementById('modalBtn');
+// Get close button
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+// Listen for open click
+modalBtn.addEventListener('click', openModal);
+// Listen for close click
+closeBtn.addEventListener('click', closeModal);
+// Listen for outside click
+window.addEventListener('click', outsideClick);
+
+// Open modal
+function openModal(){
+  modal.style.display = 'block';
+}
+
+// Close modal
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+// Click outside and close
+function outsideClick(e){
+  if(e.target == modal){
+    modal.style.display = 'none';
+  }
+}
     </script>
     
     

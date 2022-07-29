@@ -239,22 +239,22 @@ nav ul li.hovered a::after{
    color: var(--g2);
    min-height: 50px;
 }
-.t-all tr:nth-child(even) {
+.t-all tr:nth-child(odd) {
     background-color: #fff;
 }
-.t-all tr:nth-child(odd) {
+.t-all tr:nth-child(even) {
    background-color:var(--g1);
 }
 
-#teachers th {
+.t-all th {
    padding-top: 11px;
    padding-bottom: 11px;
    background-color: var(--g1);
    color: black;
    font-size: 15px;
 }
-#teachers td,
-#teachers th {
+.t-all td,
+.t-all th {
     text-align: center;
     padding: 8px;
 }
