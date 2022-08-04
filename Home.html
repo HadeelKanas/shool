@@ -243,12 +243,12 @@
             // console.log(i)
         } 
 
-        function test1(){
-            let i = document.getElementById("i1").files[0]
-            document.getElementById("test-img").innerHTML = `
-                <img src=${i.name} alt="test" width="100" height="100" />
-            `
-        }
+        // function test(){
+        //     let i = document.getElementById("i1").files[0]
+        //     document.getElementById("test-img").innerHTML = `
+        //         <img src=${i.name} alt="test" width="100" height="100" />
+        //     `
+        // }
 
         function getPosts() {
             axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=teacher", {
@@ -331,6 +331,7 @@
                             feedbacks.innerHTML += `
                             <div class="feedback">
                                 <div class="person">${ele.user}</div>   
+                                <div class="date">${ele.date}</div>   
                                 <p  class="f-text">${ele.text}</p> 
                             </div>
                             `

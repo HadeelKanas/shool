@@ -102,41 +102,39 @@
              
 
             <!-- table---------------------------- -->
-            <table id="programs" class="t-all">
-                               
-                   <tr>
-                       <th></th>
-                       <th>1</th>
-                       <th>2</th>
-                       <th>3</th>
-                       <th>4</th>
-                       <th>5</th>
-                       <th>6</th>
-                       
-                   </tr>
-                   <tr>
-                       <td>sunday</td>
-                       <td>maths</td>
-                       <td>maths</td>
-                       <td>maths</td>
-                       <td>maths</td>
-                       <td>maths</td>
-                       <td>maths</td>                          
-                   </tr>
+            <table id="programs" class="t-all">     
+                <tr>
+                    <th></th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    
+                </tr>
+                <tr id="sunday">
+                    <td>sunday</td>                          
+                </tr>
+                <tr id="monday">
+                    <td>monday</td>                          
+                </tr>
+                <tr id="tuesday">
+                    <td>tuesday</td>                         
+                </tr>
+                <tr id="wednesday">
+                    <td>wednesday</td>                         
+                </tr>
+                <tr id="thursday">
+                    <td>thursay</td>                         
+                </tr>
           
-            </table>
-
-
-                       
-                                
-           
-                              
-                       
-                </div>
- 
+            </table>   
         </div>
+ 
+    </div>
            
-    </div>        
+</div>        
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -175,7 +173,95 @@
                     <option default value=${ele.id.toString()}>${ele.name}</option>
                     `
                 })
-            })            
+                getProgramOnLoad()
+            })
+            
+            function getProgramOnLoad(){
+                axios.get("http://127.0.0.1:8000/en/api/v1/dailyLessones/?className=1&limit=60", {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    }
+                }).then(e => {
+                    const data = e.data.results
+                    let sunday = []
+                    let monday = []
+                    let tuesday = []
+                    let wednesday = []
+                    let thursday = []
+                    console.log(data)
+                    for(let i = 0; i < data.length; i++) {
+                        if(sunday.length >= 6 ) break;
+
+                        if(data[i].day == "sunday"){
+                            sunday.push(data[i])
+                        }
+                    }
+                    for(let i = 0; i < data.length; i++) {
+                        if(monday.length >= 6 ) break;
+
+                        if(data[i].day == "monday"){
+                            monday.push(data[i])
+                        }
+                    }
+                    for(let i = 0; i < data.length; i++) {
+                        if(tuesday.length >= 6 ) break;
+
+                        if(data[i].day == "tuesday"){
+                            tuesday.push(data[i])
+                        }
+                    }
+                    for(let i = 0; i < data.length; i++) {
+                        if(wednesday.length >= 6 ) break;
+
+                        if(data[i].day == "wensday"){
+                            wednesday.push(data[i])
+                        }
+                    }
+                    for(let i = 0; i < data.length; i++) {
+                        if(thursday.length >= 6 ) break;
+
+                        if(data[i].day == "thursday"){
+                            thursday.push(data[i])
+                        }
+                    }
+                    console.log(sunday)
+                    console.log(monday)
+                    console.log(tuesday)
+                    console.log(wednesday)
+                    console.log(thursday)
+                    const sundayTable = document.getElementById("sunday")
+                    const mondayTable = document.getElementById("monday")
+                    const tuesdayTable = document.getElementById("tuesday")
+                    const wednesdayTable = document.getElementById("wednesday")
+                    const thursdayTable = document.getElementById("thursday")
+
+                    sunday.forEach(e => {
+                        sundayTable.innerHTML += `
+                            <td>${e.subject}</td>
+                        `
+                    })
+                    monday.forEach(e => {
+                        mondayTable.innerHTML += `
+                            <td>${e.subject}</td>
+                        `
+                    })
+                    tuesday.forEach(e => {
+                        tuesdayTable.innerHTML += `
+                            <td>${e.subject}</td>
+                        `
+                    })
+                    wednesday.forEach(e => {
+                        wednesdayTable.innerHTML += `
+                            <td>${e.subject}</td>
+                        `
+                    })
+                    thursday.forEach(e => {
+                        thursdayTable.innerHTML += `
+                            <td>${e.subject}</td>
+                        `
+                    })
+                })
+            }
         }
     </script>
 

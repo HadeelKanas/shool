@@ -1,91 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Holiday Calendar 📆</title>
-
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous"/>
-		<link rel="stylesheet" href="./css/calander.css" />
-	</head>
-	<body>
-		<div class="card">
-			<div class="calendar-toolbar">
-				<button type="button" title="Previous Month" class="btn prev-month"><span class="fas fa-chevron-left"></span></button>
-				<div class="current-month"></div>
-				<button type="button" title="Next Month" class="btn next-month"><span class="fas fa-chevron-right"></span></button>
-			</div>
-			
-			<div class="calendar border-top">
-				<div class="weekdays">
-					<div class="weekday-name">Sa</div>
-                    <div class="weekday-name">Su</div>
-                    <div class="weekday-name">Mo</div>
-                    <div class="weekday-name">Tu</div>
-                    <div class="weekday-name">We</div>
-                    <div class="weekday-name">Th</div>
-                    <div class="weekday-name friday">Fr</div>
-				</div>
-				<div class="calendar-days"></div>
-			</div>
-
-			<div class="goto-buttons border-top">
-				<button type="button" class="btn prev-year">Prev Year</button>
-				<button type="button" class="btn today">Today</button>
-				<button type="button" class="btn next-year">Next Year</button>
-			</div>
-			
-			<!-- <div class="holiday-block border-top">
-				<div class="holiday">Friday</div> 
-			</div> -->
-		</div>
-        <script defer>
-            const currentMonth = document.querySelector(".current-month");
-            const calendarDays = document.querySelector(".calendar-days");
-            const buttons = document.querySelectorAll(".btn");
-            let date = new Date();
-
-            currentMonth.textContent = date.toLocaleDateString("en-US", {month:'long', year:'numeric'});
-            renderCalendar();
-
-            function renderCalendar(){
-                const prevLastDay = new Date(date.getFullYear(),date.getMonth(),0).getDate();
-                const totalMonthDay = new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
-                const startWeekDay = new Date(date.getFullYear(),date.getMonth(),1).getDay();
-                
-                calendarDays.innerHTML = "";
-
-                const totalCalendarDay = 6 * 7;
-                for (let i = 0; i < totalCalendarDay; i++) {
-                    const day = i-startWeekDay;
-
-                    if(i <= startWeekDay){
-                        calendarDays.innerHTML += `<div class='padding-day'>${prevLastDay-i}</div>`;    // adding previous month days
-                    }else if(i <= startWeekDay+totalMonthDay){
-                        date.setDate(day);
-                        date.setHours(0,0,0,0);
-                        const dayClass = date.getTime()===new Date().setHours(0,0,0,0) ? 'current-day' : 'month-day'; 
-                        calendarDays.innerHTML += `<div class='${dayClass}'>${day}</div>`;              // adding this month days
-                    }else{
-                        calendarDays.innerHTML += `<div class='padding-day'>${day-totalMonthDay}</div>`;// adding next month days
-                    }
-                }
-            }
-
-            buttons.forEach((btn) => btn.addEventListener("click", (e) => {
-                const btnClass = String(e.target.classList);
-                date = new Date(currentMonth.textContent);
-                if(btnClass.includes("today")){
-                    date = new Date();
-                }else if(btnClass.includes("-year")){
-                    date = new Date(date.getFullYear() + (btnClass.includes("prev") ? -1 : 1), 0, 1);
-                }else if(btnClass.includes("-month")){
-                    date.setMonth(date.getMonth() + (btnClass.includes("prev") ? -1 : 1));
-                }
-                currentMonth.textContent = date.toLocaleDateString("en-US", {month:'long', year:'numeric'});
-                renderCalendar();
-            }));
-        </script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/calander.css" />
+</head>
+    <body>
+        
+    </body>
 </html>
