@@ -29,20 +29,22 @@ body{
 }
 .left{
     position: fixed;
-    width:500px;
+    width:550px;
     height: 100%;
     background-color: var(--purple);
 
 }
 .left img{
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 390px;
+    margin-top: 100px;
+    margin-left: 35px;
     color: var(--purple);
     
 }
 .signin{
     position: absolute;
-    width: calc(100% - 500px);
+    width: calc(100% - 550px);
     right: 0;
     top: 0;
     min-height: 100vh;
@@ -52,8 +54,8 @@ body{
 h2 {
       text-align: center;
       font-weight: 200;
-      font-size: 2em;
-      margin-top: 25px;
+      font-size: 36px;
+      margin-top: 35px;
       color: var(--purple);
 }
 .form{
@@ -69,8 +71,14 @@ h2 {
     width:100%;
     height: 35px;
     /* margin-left: 50px; */
-    margin-bottom: 40px;
-}   
+    margin-bottom: 50px;
+    box-shadow: 0px 8px 10px var(--g1);
+} 
+.form input::placeholder{
+    font-size: 14px;
+    padding-left:20px;
+
+  }  
 .form button{
     width: 100%;
     height: 35px;
@@ -80,6 +88,7 @@ h2 {
     border: 1px solid var(--red);
     background-color: var(--red);
     color: white;
+    font-size:16px;
 }
 .form a{
  text-decoration: none;
@@ -87,6 +96,7 @@ h2 {
 .form a p{
     color: var(--red);
     text-align: center;
+
 }    
      
 

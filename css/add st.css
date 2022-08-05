@@ -164,6 +164,11 @@ nav ul li.hovered a::after{
     justify-content: center;
     left: 75px;
   }
+  #blah{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
   .photo .add{
     position: absolute;
     display: none;
