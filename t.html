@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
+    <title>Teachers</title>
     <link rel="stylesheet" href="css/t.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
-<body onload="">
+<body onload="getData()">
     <div class="container"> 
          <!-- nav bar---------------------------->
          <nav>
@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="#">
+                    <a href="./students.html">
                         <span class="icon">
                             <ion-icon name="accessibility-outline"></ion-icon>
                         </span>
@@ -90,7 +90,7 @@
 
             
              <!-- table -->
-             <div class="t">MAths:</div>
+             <!-- <div class="t">MAths:</div> -->
              <table class="term">
                 <tr>
                     <th></th>
@@ -103,25 +103,61 @@
                     
                 </tr>
                 <tr>
-                    <td>sunday</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>                          
+                    <td>Sunday</td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                                             
                 </tr>
                 <tr>
                     <td>Monday</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>
-                    <td>maths</td>                          
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                                              
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                                              
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                                              
+                </tr>
+                <tr>
+                    <td>Thersday</td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                    <td><input id="" type="text>"></td>
+                                              
                 </tr>
 
-          
+             </table>
+
+
+
+             <button type="submit" id="" class="btn"> Accept </button>
 
 
 
@@ -133,30 +169,26 @@
                     <div class="user">
                         <img src="images//user1.jpg" alt="">
                     </div>
-                    <div class="name">Mr. Ahmad</div>
+                    <div id="student-name" class="name">Mr. Ahmad</div>
         
                 </div>
-                <div class="info">
-                    <p> father: Ahmad</p>
+                <div id="info" class="info">
+                    <!-- <p> father: Ahmad</p>
                     <p>Mother: Sama Ali</p>                    
                     <p> Birthday: 1/1/2005</p>
                     <p>Adress: Damascus-AlMazzeh</p>
                     <p> Phone number: 09********</p>
                     <p> Subject: Maths</p>
-                    <p>The certificate:gnhd</p>
-                    <p id="act">Active</p>
+                    <p>The certificate:gnhd</p> -->
+                    <!-- <p id="act">Active</p>
         
                     <div class="attend">
                         <div class="one"><p>68</p></div>
                         <div class="two"><p>3</p></div>
                         <div class="three"><p>0</p></div>
                     </div>
-        
+         -->
                                                  
-                    <div class="btn">
-                        <button onclick="" id="">Edit</button>
-                        
-                    </div>
                 </div>
             </aside>   
                    
@@ -174,10 +206,16 @@
     <script>
         // add hovered class to selected list item
         let list = document.querySelectorAll("nav li");
+        document.getElementById("one").addEventListener("click", function (e) {
+            switchFeedBackState(1)
+        })
+        document.getElementById("two").addEventListener("click", function (e) {
+            switchFeedBackState(2)
+        })
 
         function activeLink() {
             list.forEach((item) =>
-                item.classList.remove('hovered'));
+         item.classList.remove('hovered'));
             this.classList.add('hovered');
         }
 
@@ -188,10 +226,55 @@
         let navigation = document.querySelector('nav');
         let main = document.querySelector('.main');
 
-        toggle.onclick = function () {
-            navigation.classList.toggle('active');
-            main.classList.toggle('active');
-        };
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        function getData(){
+            const teacher = getParameterByName("teacher")
+            console.log(teacher)
+            let teacherId
+            axios.get(`http://192.168.43.203:8000/en/api/v1/profile/?search=${teacher}`, {
+                headers: {
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
+                }
+            }).then(res => {
+                const id = res.data.results[0].id
+                teacherId = id
+                axios.get(`http://192.168.43.203:8000/en/api/v1/profile/${teacherId}/`, {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
+                    }
+                }
+                ).then(res => {
+                    const teacherInfo = res.data
+                    console.log(teacherInfo)
+                    const info = document.getElementById("info")
+                    const sname = document.getElementById("student-name")
+                    sname.innerHTML = teacherInfo.first_name + " " + teacherInfo.last_name
+                    info.innerHTML = `
+                        <p> father: ${teacherInfo.father_name}</p>
+                        <p>Mother: ${teacherInfo.mother_name}</p>                    
+                        <p> Birthday: ${teacherInfo.birthday}</p>
+                        <p>Adress: ${teacherInfo.address}</p>
+                        <p> Certificates: ${teacherInfo.certificates}</p>
+                        <p> Phone number: ${teacherInfo.phone}</p>
+                        <p id="act">Active</p>
+
+                        <div class="btn">
+                            <button onclick="" id="">Edit</button>
+                        </div>
+                        
+                    `
+                })
+            })
+            
+        }
     </script>    
 </body> 
 </html>   

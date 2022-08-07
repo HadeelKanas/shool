@@ -336,22 +336,10 @@ td:last-of-type{
 
   /* TODO STylE THE POPUP */
   body{
-    font-family: fantasy;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     font-size: 20px;
-    line-height: 1.6;
   }
   
-  .button{
-    background: #1ce;
-    padding: 2em 2em;
-    color: #fff;
-    border:  0;
-  }
-  
-  .button:hover{
-    background: #e439ef;
-    cursor: pointer;
-  }
   
   .modal-overlay{
     display: none;
@@ -366,43 +354,80 @@ td:last-of-type{
   }
   
   .modal-content{
-    background-color: #f4f4f4;
+    background-color:var(--back);
     margin: 20% auto;
-    width: 70%;
+    width: 450px;
+    height: 160px;
+    border-radius: 8px;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
   }
   
-  .modal-header h2, .modal-footer h3{
-    margin: 0;
-  }
-  
   .modal-header{
-    background: #1ce;
+    background: var(--purple);
     padding: 15px;
-    color: #fff;
-  }
-  
-  .modal-body{
-    padding: 10px 20px;
-  }
-  
-  .modal-footer{
-    background: #1ce;
-    padding: 10px;
-    color: #fff;
-    text-align: center;
+    position: relative;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   
   .closeBtn{
-    font-size: 30px;
-    color: #fff;
-    float: right;
+    font-size: 28px;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
   
   .closeBtn:hover,.closeBtn:focus{
-    color: #e439ef;
+    color: var(--purple);
+    background-color:var(--back) ;
     text-decoration: none;
     cursor:  pointer;
   }
+  .modal-body{
+    padding: 10px;
+    position: relative;
+  }
+  
+  .modal-body label{
+      font-style: italic;
+      font-size: 17px;
+      color: var(--grey);
+      top: 35px;
+      position: absolute;
+      left: 25px;
+
+  }
+  .modal-body .input{
+    width: 165px;
+    height: 30px;
+    border: 1px solid var(--grey);
+    border-radius: 20px;
+    padding-left: 16px;
+    font-size: 16px;
+    color: var(--grey);
+    position: relative;
+    top: 22px;
+    left: 120px;
+
+  }
+ 
+  .modal-body button{
+    background: var(--back);
+
+    width: 75px;
+    height: 30px;
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--red);
+    color: white;
+    position: absolute;
+    right: 10px;
+    bottom: -70px;
+  
+  }
+  
+  
   
   

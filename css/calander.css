@@ -1,156 +1,401 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
 :root {
-	--color-accent: rgb(112, 71, 235);
-	--color-accent: #3099f0;
-	--background-color: #F8F7FA;
-	--foreground-color:  #FFFFFF;
-	--text-color: #19181A;
-	--highlight-text-color: var(--text-color);
-	--active-text-color: #F8F7FA;
-	--inactive-text-color: #A5A5A5;
-	--btn-bg: #F8F7FA;
-	--box-shadow: #EFEFEF;
+    --blue: #9fb4ff;
+    --orange: #FF8A65;
+    --green: #89e4a3;
+    --purple:#693ab7;
+    --back: #f9f6f1;
+    --red:#EC407A;
+    /* --red:#F06292; */
+    --grey:#707070;
+    --g1:#d6d4d4;
+    --g2:#95a9aa;
+    --boxshadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  }
 
-	--border-width: 1px;
-	--border-radius: 15px;
-	--spacing: 18px;
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+   
+}
+nav{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color:var(--purple) ;
+    border-left: 18px solid var(--purple);
+    transition: 0.5s;
+    overflow: hidden;
+    /* order: 1; */
+}
+nav.active {
+    width: 85px;
+  }
+nav ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+nav ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+nav ul li:hover,
+nav ul li.hovered {
+    background-color: var(--back);
 }
 
-@media	(prefers-color-scheme: dark){
-	:root{
-		--background-color: #19181A;
-		--foreground-color:  #282729;
-		--text-color: #C9C8CC;
-		--highlight-text-color: #F8F7FA;
-		--inactive-text-color: #68676A;
-		--btn-bg: #313133;
-		--box-shadow: #111111;
-	}
+nav ul li.hovered1 {
+    background-color: var(--back);
 }
-
-* {
-	margin: 0;
-	padding: 0;
+nav ul li:nth-child(1){
+    margin-bottom: 50px;
+    pointer-events: none;
 }
-
-body {
-	height: 100vh;
-	background: var(--background-color);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: 'Quicksand', sans-serif;
-	user-select: none;
+nav ul li a{
+position: relative;
+width: 100%;
+display: flex;
+text-decoration: none;
+color: var(--back);
+font-size: 18px;
 }
-
-/* ----------card---------- */
-
-.card {
-	width: 316px;
-	height: fit-content;
-	background-color: var(--foreground-color);
-	border-radius: var(--border-radius);
-	box-shadow: 0px 0px 10px var(--box-shadow);
-	margin:20px;
+nav ul li:hover a, 
+nav ul li.hovered a {
+    color:var(--purple) ;
+    /* background-color: white; */
 }
-
-/* ----------calendar ---------- */
-
-.calendar-toolbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px;
-	padding-bottom: 15px;
-}
-
-.calendar-toolbar > .current-month{
-	font-size: 20px;
-	font-weight: bold;
-	color: var(--highlight-text-color);
-}
-
-.btn{
-	background: var(--btn-bg);
-	border: none;
-	border-radius: var(--border-radius);
-	padding: 11px 15.5px;
-	color: var(--highlight-text-color);
-	font-family: 'Quicksand', sans-serif;
-	font-weight: 600;
-	font-size: 0.9rem;
-	margin-right: 1px;
-	box-shadow: 0px 0px 0px var(--box-shadow);
-}
-
-.weekdays,
-.calendar-days{
-	display: flex;
-	flex-wrap: wrap;
-	padding-inline: var(--spacing);
-}
-.weekdays{
-	padding-top: 12px;
-}
-.calendar-days{
-	padding-bottom: 12px;
-}
-
-.weekday-name,
-[class$='-day']{
-    width: 40px;
-    height: 40px;
-	color: var(--text-color);
+nav ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height:60px ;
+    line-height: 65px;
     text-align: center;
-	line-height: 40px;
-	font-weight: 500;
-	font-size: 1rem;
 }
+nav ul li a .icon ion-icon {
+    font: size 1.75em;
+}
+nav ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space:nowrap;
+    
+} 
+nav ul li:hover a::before,
+nav ul li.hovered a::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -70px;
+    width:70px ;
+    height: 70px;
+    border-radius:50% ;
+    background-color:transparent;
+    box-shadow: 54px 43px 0 15px var(--back);
+    pointer-events: none;
+}
+nav ul li:hover a::after,
+nav ul li.hovered a::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+    width:70px ;
+    height: 70px;
+    border-radius:50% ;
+    background-color:transparent;
+    box-shadow: 54px -43px 0 15px var(--back);
+    pointer-events: none;
+}
+/* main------------------------------------------------ */
+.main {
+    position: absolute;
+    width: calc(100% - 250px);
+    left: 250px;
+    top: 0;
+    min-height: 100vh;
+    background: var(--back);
+    transition: 0.5s;
+}
+  .main.active {
+    width: calc(100% - 85px);
+    left: 85px;
+}
+/* tog----- */
+.toggle {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    cursor: pointer;
+  } 
+  /* table-------------------- */
+   
+  table{
+    margin: 30px;
+	margin-top: 90px;
+    border-collapse: collapse;
+    font-size: 16px;
+    /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+    border-spacing: 0;
+    border-radius: 50px;
+    width: 65%;
+	position: absolute;
+	right: 0;
+	top: 0;
+    /* height: 350px; */
+    /* box-shadow: 0px 8px 10px var(--g1); */
 
-.weekday-name{
-	color: var(--highlight-text-color);
-    font-weight: 700;
 }
+ tr {
+   color: var(--g2);
+   min-height: 50px;
+}
+ tr:nth-child(even) {
+    background-color: #fff;
+}
+ tr:nth-child(odd) {
+   background-color:var(--g1);
+}
+ tr:nth-child(odd) td input{
+   background-color:var(--g1);
+}
+th {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background-color: var(--g1);
+    color: black;
+    font-size: 15px;
+ }
+ td,
+ th {
+     text-align: center;
+     padding: 8px;
+ }
+ th:first-of-type{
+     border: none;
+     border-top-left-radius: 40px;
+ }
+ th:last-of-type{
+     border: none;
+     border-top-right-radius: 40px;
+ }
+tr:last-of-type
+td:first-of-type{
+    border: none;
+    border-bottom-left-radius: 40px;;
+}
+tr:last-of-type
+td:last-of-type{
+    border: none;
+    border-bottom-right-radius: 40px;;
+}
+td input{
+    border: none;
+    width: 75px;
+    font-size: 16px;
+    color: var(--g2);
+}
+/* date picker------------- */
+p{
+	display: block;
+	font-size: 19px;
+	margin-left: 50px;
+	margin-top: 15px;
+	font-style: italic;
+}
+.date{
+	width: 200px;
+	margin-left: 80px;
+	margin-top: 20px;
+    width: 200px;
+    padding-left: 45px;
+    font-size: 17px;
+    color: var(--g2);
+    /* border: 2px solid var(--g1); */
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+    .modal.open {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+    .modal-bg {
+      position: absolute;
+      background: teal;
+      width: 100%;
+      height: 100%;
+    }
+    .modal-container {
+        border-radius: 10px;
+        background: #fff;
+        position: relative;
+        padding: 30px;
+      }
+      .modal-close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        outline: none;
+        appearance: none;
+        color: red;
+        background: none;
+        border: 0px;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-.current-day{
-	background-color: var(--color-accent);
-	color: var(--active-text-color); 
-	border-radius: var(--border-radius);
-	font-weight: 700;
-	transition: .5s;
-	cursor: pointer;
-}
+      /* TODO STylE THE POPUP */
+  body{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 20px;
+  }
+  
+  
+  .modal-overlay{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modal-content{
+    background-color:var(--back);
+    margin: 20% auto;
+    width: 450px;
+    height: 160px;
+    border-radius: 8px;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  }
+  
+  .modal-header{
+    background: var(--purple);
+    padding: 15px;
+    position: relative;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .closeBtn{
+    font-size: 28px;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .closeBtn:hover,.closeBtn:focus{
+    color: var(--purple);
+    background-color:var(--back) ;
+    text-decoration: none;
+    cursor:  pointer;
+  }
+  .modal-body{
+    padding: 10px;
+    position: relative;
+  }
+  
+  .modal-body label{
+      font-style: italic;
+      font-size: 17px;
+      color: var(--grey);
+      top: 35px;
+      position: absolute;
+      left: 25px;
 
-.padding-day{
-	color: var(--inactive-text-color);
-	user-select: none;
-}
+  }
+  .modal-body .input{
+    width: 165px;
+    height: 30px;
+    border: 1px solid var(--grey);
+    border-radius: 20px;
+    padding-left: 16px;
+    font-size: 16px;
+    color: var(--grey);
+    position: relative;
+    top: 22px;
+    left: 120px;
 
-.btn:hover,
-.month-day:hover{
-	border-radius: var(--border-radius);
-	background-color: var(--btn-bg);
-	color: var(--color-accent);
-	border-radius: var(--border-radius);
-	transition: .1s;
-	cursor: pointer;
-	box-shadow: inset 0px 0px 0px 1.5px var(--color-accent);
-}
+  }
+ 
+  .modal-body button{
+    background: var(--back);
 
-.btn:focus,
-.month-day:focus{
-	border-radius: var(--border-radius);
-	background-color: var(--color-accent);
-	color: var(--active-text-color);
-}
+    width: 75px;
+    height: 30px;
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--red);
+    color: white;
+    position: absolute;
+    right: 10px;
+    bottom: -70px;
+  
+  }
+  
+  #modalBtn{
+    background: var(--back);
 
-.goto-buttons{
-	padding-block: 18px;
-	display: flex;
-	justify-content: space-evenly;
-}
+    width: 120px;
+    height: 30px;
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--red);
+    color: white;
+    position: absolute;
+    right: 50px;
+    top: 40px; 
+  }
 
-.border-top{
-	border-top: var(--border-width) solid var(--box-shadow);
-}
+  
+  
+  
+
+  
+
+  

@@ -210,10 +210,10 @@
             fdata.append("description", e)
             fdata.append("image", i)
 
-            axios.post("http://127.0.0.1:8000/en/api/v1/post/", fdata, 
+            axios.post("http://192.168.43.203:8000/en/api/v1/post/", fdata, 
             {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                 }
             }
             ).then(o => {
@@ -251,9 +251,9 @@
         // }
 
         function getPosts() {
-            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=teacher", {
+            axios.get("http://192.168.43.203:8000/en/api/v1/profile/?type=teacher", {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                 }
             }).then(res => {
                 const count = res.data.count
@@ -261,9 +261,9 @@
                 toChange.innerHTML = count
             })
 
-            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=employee", {
+            axios.get("http://192.168.43.203:8000/en/api/v1/profile/?type=employee", {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                 }
             }).then(res => {
                 const count = res.data.count
@@ -271,9 +271,9 @@
                 toChange.innerHTML = count
             })
 
-            axios.get("http://127.0.0.1:8000/en/api/v1/student/", {
+            axios.get("http://192.168.43.203:8000/en/api/v1/student/", {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                 }
             }).then(res => {
                 const count = res.data.count
@@ -283,9 +283,9 @@
             
 
 
-            axios.get("http://127.0.0.1:8000/en/api/v1/post/", {
+            axios.get("http://192.168.43.203:8000/en/api/v1/post/", {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                 }
             }).then(o => {
                 let posts = o.data.results
@@ -319,9 +319,9 @@
             if (state == 1){
                 const feedbacks = document.getElementById("feedbacks")
                 feedbacks.innerHTML = ``
-                axios.get("http://127.0.0.1:8000/en/api/v1/feedback/", {
+                axios.get("http://192.168.43.203:8000/en/api/v1/feedback/", {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                     }
                 }).then(res => {
                     feedbackData = res.data.results
@@ -341,9 +341,9 @@
             } else if (state == 2){
                 const feedbacks = document.getElementById("feedbacks")
                 feedbacks.innerHTML = ``
-                axios.get("http://127.0.0.1:8000/en/api/v1/feedback/", {
+                axios.get("http://192.168.43.203:8000/en/api/v1/feedback/", {
                     headers: {
-                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                     }
                 }).then(res => {
                     feedbackData = res.data.results
@@ -366,9 +366,9 @@
 
         function functionGetFeedback(){
             const feedbacks = document.getElementById("feedbacks")
-            axios.get("http://127.0.0.1:8000/en/api/v1/feedback/", {
+            axios.get("http://192.168.43.203:8000/en/api/v1/feedback/", {
                 headers: {
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
                 }
             }).then(res => {
                 feedbackData = res.data.results

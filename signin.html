@@ -19,9 +19,9 @@
             <h2>Signin</h2>
             
             <div class="form">
-              <input type="text" placeholder="Username" name="un" />
-              <input type="password" placeholder="Password" name="pw" />
-              <button> Sign in </button>
+              <input id="username" type="text" placeholder="Username" name="un" />
+              <input id="password" type="password" placeholder="Password" name="pw" />
+              <button onclick="login()"> Sign in </button>
               <a href="#"> <p> Forgot password? </p></a>
             </div>
         </div>
@@ -29,4 +29,24 @@
 
 
     </div>
+
+    <script>
+        function login(){
+            const username = document.getElementById("username").value
+            const password = document.getElementById("password").value
+
+            const formdata = new FormData()
+            formdata.append("username", username)
+            formdata.append("password", password)
+            axios.post("http://192.168.43.203:8000/en/api/v1/api/token/", formdata).then(res => {
+                console.log(res.data.access)
+                localStorage.setItem("token", res.data.access)
+                window.location.replace("file:///C:/Users/Hadeel/Desktop/project/Home.html")
+            }).catch(e => {
+                console.log(e)
+                alert("wrong username or password")
+            })
+        }
+
+    </script>
 </body>

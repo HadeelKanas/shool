@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/st.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
-<body onload="">
+<body onload="getData()">
     <div class="container"> 
          <!-- nav bar---------------------------->
          <nav>
@@ -177,16 +177,16 @@
                     <div class="user">
                         <img src="images//student.jpg" alt="">
                     </div>
-                    <div class="name">leen Ali</div>
+                    <div id="student-name" class="name">leen Ali</div>
         
                 </div>
-                <div class="info">
-                   <p> father: Ahmad</p>
+                <div id="info" class="info">
+                   <!-- <p> father: Ahmad</p>
                     <p>Mother: Sama Ali</p>                    
                     <p> Age: 12</p>
                     <p> Birthday: 1/1/2005</p>
                     <p>Adress: Damascus-AlMazzeh</p>
-                    <p> Phone number: 09********</p>
+                    <p> Phone number: 09********</p> -->
                     <p id="act">Active</p>
         
                     <div class="attend">
@@ -241,6 +241,66 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         };
+
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        function getData(){
+            const student = getParameterByName("student")
+            console.log(student)
+            axios.get(`http://192.168.43.203:8000/en/api/v1/student/?search=${student}`, {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
+                    }
+                }
+            ).then(res => {
+                const studentInfo = res.data.results[0]
+                console.log(studentInfo)
+                const info = document.getElementById("info")
+                const sname = document.getElementById("student-name")
+                sname.innerHTML = studentInfo.first_name + " " + studentInfo.last_name
+                info.innerHTML = `
+                    <p> father: ${studentInfo.father_name}</p>
+                    <p>Mother: ${studentInfo.mother_name}</p>                    
+                    <p> Birthday: ${studentInfo.birthday}</p>
+                    <p>Adress: ${studentInfo.address}</p>
+                    <p> Phone number: ${studentInfo.phone}</p>
+                    <p id="act">Active</p>
+                `
+                axios.get(`http://192.168.43.203:8000/en/api/v1/student-attendance/${studentInfo.id}`, {
+                    headers: {
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
+                    }
+                }).then(res => {
+                    info.innerHTML += `
+                        
+                    <div class="attend">
+                        <div class="one"><p>${res.data[0].count}</p></div>
+                        <div class="two"><p>${res.data[1].count}</p></div>
+                        <div class="three"><p>${res.data[2].count}</p></div>
+                    </div>
+        
+                    <div class="contact">
+                        <label>Student behavior</label>
+                        <div class="date">1/1/2022</div>
+                        <textarea id="" class="text" rows="4" placeholder="Write here..."></textarea>
+                        <button onclick="" id="">Send</button>
+                    </div>                                  
+                                       
+                    <div class="btn">
+                        <button onclick="" id="">Edit</button>
+                        
+                    </div>
+                    `
+                })
+            })
+        }
     </script>    
 </body> 
 </html>   

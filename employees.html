@@ -189,9 +189,9 @@
             if (!selected){
                 document.getElementById("sidebar-id").style="visibility: hidden"
             }
-            axios.get("http://127.0.0.1:8000/en/api/v1/profile/?type=employee", {
+            axios.get("http://192.168.43.203:8000/en/api/v1/profile/?type=employee", {
             headers: {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg4MDU0NzcxLCJpYXQiOjE2NTY1MTg3NzEsImp0aSI6ImY2NzlhZjJjNmFiZjQwMjVhMGUxNzY5Y2Q4ZTZlMzQyIiwidXNlcl9pZCI6MX0.wrITswhRWlky0nyXcUdrw6wd1ACeMtunJl8J0ky9cXU"
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDIxMjUyLCJpYXQiOjE2NTk4ODUyNTIsImp0aSI6IjU5NzA1MTk4NGIxMjRlZTNiYjY3ZTFjOThmOWQ5ZmU3IiwidXNlcl9pZCI6MX0.IUUIMaWqC0EBvixOd-vP-Wh2woApeO_oj35pJvTJS2w"
             }
             }).then(res => {
                 let counter = 1
